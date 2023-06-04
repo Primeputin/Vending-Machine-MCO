@@ -1,0 +1,4 @@
+*.pdf
+*.class
+bin/
+.DS_Store
