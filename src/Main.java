@@ -20,9 +20,10 @@ public class Main {
 		Item onion = new Item("Onion", 30, 17, false);
 		Item fishfillet = new Item("Fish fillet", 207, 172, true);
 		
-		VendingModel vendingModel = new VendingModel();
+		VendingModel vendingModel;
 		VendingView vendingView = new VendingView();
-		Vending vendingMachine = new Vending(vendingModel, vendingView);
+		Vending vendingMachine = new Vending(new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), vendingView);
+
 		
 		try
 		{
@@ -38,15 +39,8 @@ public class Main {
 				switch(choice)
 				{
 					case 0: 
-						
-						vendingMachine.addSlots(bun);
-						vendingMachine.addSlots(tomato);
-						vendingMachine.addSlots(chickenfillet);
-						vendingMachine.addSlots(mozarella);
-						vendingMachine.addSlots(patty);
-						vendingMachine.addSlots(lettuce);
-						vendingMachine.addSlots(onion);
-						vendingMachine.addSlots(fishfillet);
+						vendingModel = new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet);
+						vendingMachine = new Vending(vendingModel, vendingView);
 						
 						vendingMachine.setOne(1);
 						vendingMachine.setFive(6);
@@ -59,7 +53,7 @@ public class Main {
 						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
 						{
 				
-							vendingMachine.getSlots().get(i).stock(3);;
+							vendingMachine.getSlots().get(i).stock(10);;
 
 						}
 

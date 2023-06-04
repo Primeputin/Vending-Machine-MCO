@@ -13,6 +13,18 @@ public class VendingModel {
 	private int onehundred;
 	private int fivehundred;
 	
+	public VendingModel(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8)
+	{
+		addSlots(item1);
+		addSlots(item2);
+		addSlots(item3);
+		addSlots(item4);
+		addSlots(item5);
+		addSlots(item6);
+		addSlots(item7);
+		addSlots(item8);
+	}
+	
 	public void addSlots(Slot slot)
 	{
 		slots.add(slot);

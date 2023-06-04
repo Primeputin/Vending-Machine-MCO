@@ -90,7 +90,7 @@ public class VendingView {
 		
 		System.out.println("");
 
-		for (i = 0; i < slots.size() / 2; i++)
+		for (i = slots.size() / 2; i < slots.size(); i++)
 		{
 			System.out.printf("x%-23d", slots.get(i).getAvailability());
 		}
