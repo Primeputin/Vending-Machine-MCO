@@ -6,7 +6,7 @@ public class Item {
 	private int price;
 	private boolean individual;
 	
-	public Item(String name, int calories, int price, int availability, boolean individual)
+	public Item(String name, int calories, int price, boolean individual)
 	{
 		this.name = name;
 		this.calories = calories;

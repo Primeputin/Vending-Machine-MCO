@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class VendingModel {
 	
-	private ArrayList<ArrayList<Item>> slots = new ArrayList<ArrayList<Item>>(); // 2D array of items in the vending machine
-	private ArrayList<Item> items = new ArrayList<Item>(); // list of menu in the vending machine
+	private ArrayList<Slot> slots = new ArrayList<Slot>(); 
 	private int one;
 	private int five;
 	private int ten;
@@ -14,20 +13,14 @@ public class VendingModel {
 	private int onehundred;
 	private int fivehundred;
 	
-	public void addSlots(Item item)
+	public void addSlots(Slot slot)
 	{
-		ArrayList<Item> newItem = new ArrayList<Item>();
-		items.add(item); // add to the list of menu in the vending machine
-		slots.add(newItem);
+		slots.add(slot);
 	}
 	
-	public void stock(int slotIndex, int num)
+	public void addSlots(Item item)
 	{
-		for (int i = 0; i < num; i++)
-		{
-			Item stock = new Item(items.get(slotIndex));
-			slots.get(slotIndex).add(stock);
-		}
+		slots.add(new Slot(item));
 	}
 	
 	public int enterCash(Scanner input)
@@ -226,13 +219,8 @@ public class VendingModel {
 		return fivehundred;
 	}
 	
-	public ArrayList<ArrayList<Item>> getSlots()
+	public ArrayList<Slot> getSlots()
 	{
 		return slots;
-	}
-	
-	public ArrayList<Item> getItems()
-	{
-		return items;
 	}
 }

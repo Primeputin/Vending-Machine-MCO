@@ -11,14 +11,14 @@ public class Main {
 		int choice;
 		boolean created = false;
 		
-		Item bun = new Item("Bun", 120, 20, 10, true);
-		Item tomato = new Item("Tomato", 25, 15, 10 , true);
-		Item chickenfillet = new Item("Chicken Fillet", 239, 150, 12 , true);
-		Item mozarella = new Item("Mozarella", 150, 31, 10, false);
-		Item patty = new Item("Patty", 251, 169, 15, true);
-		Item lettuce = new Item("Lettuce", 30, 17, 10, false);
-		Item onion = new Item("Onion", 30, 17, 10, false);
-		Item fishfillet = new Item("Fish fillet", 207, 172, 10, true);
+		Item bun = new Item("Bun", 120, 20, true);
+		Item tomato = new Item("Tomato", 25, 15, true);
+		Item chickenfillet = new Item("Chicken Fillet", 239, 150, true);
+		Item mozarella = new Item("Mozarella", 150, 31, false);
+		Item patty = new Item("Patty", 251, 169, true);
+		Item lettuce = new Item("Lettuce", 30, 17, false);
+		Item onion = new Item("Onion", 30, 17, false);
+		Item fishfillet = new Item("Fish fillet", 207, 172, true);
 		
 		VendingModel vendingModel = new VendingModel();
 		VendingView vendingView = new VendingView();
@@ -59,8 +59,7 @@ public class Main {
 						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
 						{
 				
-							vendingMachine.stock(i, 1);
-							System.out.println(vendingMachine.getSlots().get(i).size());
+							vendingMachine.getSlots().get(i).stock(3);;
 
 						}
 
@@ -144,11 +143,11 @@ public class Main {
 			slotIndex = input.nextInt();
 			if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
 			{
-				if (vendingMachine.getSlots().get(slotIndex).size() > 0)
+				if (vendingMachine.getSlots().get(slotIndex).getItems().size() > 0)
 				{
-					change = vendingMachine.change(amount, vendingMachine.getItems().get(slotIndex).getPrice());
+					change = vendingMachine.change(amount, vendingMachine.getSlots().get(slotIndex).getPrice());
 
-					if (amount < vendingMachine.getItems().get(slotIndex).getPrice())
+					if (amount < vendingMachine.getSlots().get(slotIndex).getPrice())
 					{
 						System.out.println("Not enough cash.");
 					}
@@ -159,13 +158,13 @@ public class Main {
 					else
 					{
 						System.out.println("Your change is " + change);
-						vendingMachine.getSlots().get(slotIndex).remove(vendingMachine.getSlots().get(slotIndex).size() - 1);
+						vendingMachine.getSlots().get(slotIndex).destroyItem();
 
 					}
 				}
 				else
 				{
-					System.out.println("Sorry, the item you picked is unavailable as of the moment");
+					System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
 				}
 				
 			}

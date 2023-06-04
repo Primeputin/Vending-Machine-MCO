@@ -17,12 +17,6 @@ public class Vending {
 		vendingModel.addSlots(item);
 	}
 	
-	public void stock(int slotIndex, int num)
-	{
-		vendingModel.stock(slotIndex, num);
-	}
-	
-	
 	public int enterCash(Scanner input)
 	{
 		return vendingModel.enterCash(input);
@@ -103,19 +97,13 @@ public class Vending {
 		return vendingModel.getFiveHundred();
 	}
 	
-	
-	public ArrayList<ArrayList<Item>> getSlots()
+	public ArrayList<Slot> getSlots()
 	{
 		return vendingModel.getSlots();
 	}
 	
-	public ArrayList<Item> getItems()
-	{
-		return vendingModel.getItems();
-	}
-	
 	public void viewVendingMachine()
 	{
-		vendingView.viewVendingMachine(vendingModel.getItems());
+		vendingView.viewVendingMachine(vendingModel.getSlots());
 	}
 }
