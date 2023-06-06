@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Slot extends Item{
 
 	private int availability;
+	private int sold;
 	private ArrayList<Item> items;
 	
 	public Slot(String name, int calories, int price, boolean individual)
@@ -10,6 +11,7 @@ public class Slot extends Item{
 		super(name, calories, price, individual);	
 		items = new ArrayList<Item>();
 		availability = 0;
+		sold = 0;
 	}
 	
 	public Slot(Item item)
@@ -17,6 +19,7 @@ public class Slot extends Item{
 		super(item);
 		items = new ArrayList<Item>();
 		availability = 0;
+		sold = 0;
 	}
 	
 	public void stock(int num)
@@ -39,6 +42,11 @@ public class Slot extends Item{
 		this.availability = num;
 	}
 	
+	public void setSold(int sold)
+	{
+		this.sold = sold;
+	}
+	
 	public void setItems(ArrayList<Item> items)
 	{
 		this.items = items;
@@ -47,6 +55,11 @@ public class Slot extends Item{
 	public int getAvailability()
 	{
 		return availability;
+	}
+	
+	public int getSold()
+	{
+		return sold;
 	}
 	
 	public ArrayList<Item> getItems()

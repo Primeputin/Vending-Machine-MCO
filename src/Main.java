@@ -152,6 +152,7 @@ public class Main {
 					else
 					{
 						System.out.println("Your change is " + change);
+						vendingMachine.getSlots().get(slotIndex).setSold(vendingMachine.getSlots().get(slotIndex).getSold() + 1);
 						vendingMachine.getSlots().get(slotIndex).destroyItem();
 
 					}
