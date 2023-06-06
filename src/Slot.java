@@ -1,15 +1,15 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Slot extends Item{
 
 	private int availability;
 	private int sold;
-	private ArrayList<Item> items;
+	private LinkedList<Item> items;
 	
 	public Slot(String name, int calories, int price, boolean individual)
 	{
 		super(name, calories, price, individual);	
-		items = new ArrayList<Item>();
+		items = new LinkedList<Item>();
 		availability = 0;
 		sold = 0;
 	}
@@ -17,7 +17,7 @@ public class Slot extends Item{
 	public Slot(Item item)
 	{
 		super(item);
-		items = new ArrayList<Item>();
+		items = new LinkedList<Item>();
 		availability = 0;
 		sold = 0;
 	}
@@ -33,7 +33,7 @@ public class Slot extends Item{
 	
 	public void destroyItem()
 	{
-		items.remove(availability - 1);
+		items.removeFirst();
 		availability -= 1;
 	}
 	
@@ -47,7 +47,7 @@ public class Slot extends Item{
 		this.sold = sold;
 	}
 	
-	public void setItems(ArrayList<Item> items)
+	public void setItems(LinkedList<Item> items)
 	{
 		this.items = items;
 	}
@@ -62,7 +62,7 @@ public class Slot extends Item{
 		return sold;
 	}
 	
-	public ArrayList<Item> getItems()
+	public LinkedList<Item> getItems()
 	{
 		return items;
 	}
