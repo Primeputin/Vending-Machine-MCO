@@ -11,14 +11,14 @@ public class Main {
 		int choice;
 		boolean created = false;
 		
-		Item bun = new Item("Bun", 120, 20, true);
-		Item tomato = new Item("Tomato", 25, 15, true);
-		Item chickenfillet = new Item("Chicken Fillet", 239, 150, true);
+		Bun bun = new Bun("Bun", 120, 20, true);
+		Other tomato = new Other("Tomato", 25, 15, false);
+		Meat chickenfillet = new Meat("Chicken Fillet", 239, 150, true);
 		Item mozarella = new Item("Mozarella", 150, 31, false);
-		Item patty = new Item("Patty", 251, 169, true);
-		Item lettuce = new Item("Lettuce", 30, 17, false);
-		Item onion = new Item("Onion", 30, 17, false);
-		Item fishfillet = new Item("Fish fillet", 207, 172, true);
+		Meat patty = new Meat("Patty", 251, 169, true);
+		Other lettuce = new Other("Lettuce", 30, 17, false);
+		Other onion = new Other("Onion", 30, 17, false);
+		Meat fishfillet = new Meat("Fish fillet", 207, 172, true);
 		
 		VendingModel vendingModel;
 		VendingView vendingView = new VendingView();
@@ -133,8 +133,10 @@ public class Main {
 		{
 			vendingMachine.viewVendingMachine();
 			amount = vendingMachine.enterCash(input);
+			vendingMachine.viewVendingMachine();
 			System.out.print("Select your item: ");
 			slotIndex = input.nextInt();
+			
 			if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
 			{
 				if (vendingMachine.getSlots().get(slotIndex).getItems().size() > 0)
@@ -144,10 +146,12 @@ public class Main {
 					if (amount < vendingMachine.getSlots().get(slotIndex).getPrice())
 					{
 						System.out.println("Not enough cash.");
+						System.out.println("Your change is " + amount);
 					}
 					else if(change == -1)
 					{
 						System.out.println("Sorry, transaction cannot be made due to insufficient available change");
+						System.out.println("Your change is " + amount);
 					}
 					else
 					{
