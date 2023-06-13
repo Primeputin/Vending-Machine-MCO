@@ -133,7 +133,6 @@ public class Main {
 			vendingMachine.viewVendingMachine();
 			System.out.print("Select your item: ");
 			slotIndex = input.nextInt();
-			System.out.println("available change " + vendingMachine.getAvailableChange(0));
 			if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
 			{
 				if (vendingMachine.getSlots().get(slotIndex).getItems().size() > 0)
@@ -153,7 +152,6 @@ public class Main {
 					else
 					{
 						System.out.println("Your change is " + change);
-						System.out.println("available change " + vendingMachine.getAvailableChange(0));
 
 						vendingMachine.getSlots().get(slotIndex).setSold(vendingMachine.getSlots().get(slotIndex).getSold() + 1);
 						vendingMachine.getSlots().get(slotIndex).destroyItem();

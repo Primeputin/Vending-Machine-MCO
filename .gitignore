@@ -1,6 +1,7 @@
 *.pdf
 *.class
 bin/
+idea/
 .classpath
 .project
 .DS_Store
