@@ -42,17 +42,14 @@ public class Main {
 						vendingModel = new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet);
 						vendingMachine = new Vending(vendingModel, vendingView);
 						
-						vendingMachine.setOne(1);
-						vendingMachine.setFive(6);
-						vendingMachine.setTen(3);
-						vendingMachine.setTwenty(3);
-						vendingMachine.setFifty(10);
-						vendingMachine.setOneHundred(5);
-						vendingMachine.setFiveHundred(2);
+						
+						for (int i = 0; i < vendingMachine.getAvailableChanges().length; i++)
+						{
+							vendingMachine.setAvailableChange(10, i);
 
+						}
 						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
 						{
-				
 							vendingMachine.getSlots().get(i).stock(10);;
 
 						}
@@ -136,7 +133,7 @@ public class Main {
 			vendingMachine.viewVendingMachine();
 			System.out.print("Select your item: ");
 			slotIndex = input.nextInt();
-			
+			System.out.println("available change " + vendingMachine.getAvailableChange(0));
 			if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
 			{
 				if (vendingMachine.getSlots().get(slotIndex).getItems().size() > 0)
@@ -156,6 +153,8 @@ public class Main {
 					else
 					{
 						System.out.println("Your change is " + change);
+						System.out.println("available change " + vendingMachine.getAvailableChange(0));
+
 						vendingMachine.getSlots().get(slotIndex).setSold(vendingMachine.getSlots().get(slotIndex).getSold() + 1);
 						vendingMachine.getSlots().get(slotIndex).destroyItem();
 

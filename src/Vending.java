@@ -27,74 +27,24 @@ public class Vending {
 		return vendingModel.change(amount, cost);
 	}
 	
-	public void setOne(int num)
+	public void setAvailableChanges(int[] availableChanges)
 	{
-		vendingModel.setOne(num);
+		vendingModel.setAvailableChanges(availableChanges);
 	}
 	
-	public void setFive(int num)
+	public void setAvailableChange(int quantity, int index)
 	{
-		vendingModel.setFive(num);
+		vendingModel.setAvailableChange(quantity, index);
 	}
 	
-	public void setTen(int num)
+	public int[] getAvailableChanges()
 	{
-		vendingModel.setTen(num);
+		return vendingModel.getAvailableChanges();
 	}
 	
-	public void setTwenty(int num)
+	public int getAvailableChange(int index)
 	{
-		vendingModel.setTwenty(num);
-	}
-	
-	public void setFifty(int num)
-	{
-		vendingModel.setFifty(num);
-	}
-	
-	public void setOneHundred(int num)
-	{
-		vendingModel.setOneHundred(num);
-	}
-	
-	public void setFiveHundred(int num)
-	{
-		vendingModel.setFiveHundred(num);
-	}
-	
-	public int getOne()
-	{
-		return vendingModel.getOne();
-	}
-	
-	public int getFive()
-	{
-		return vendingModel.getOne();
-	}
-	
-	public int getTen()
-	{
-		return vendingModel.getTen();
-	}
-	
-	public int getTwenty()
-	{
-		return vendingModel.getTwenty();
-	}
-	
-	public int getFifty()
-	{
-		return vendingModel.getFifty();
-	}
-	
-	public int getOneHundred()
-	{
-		return vendingModel.getOneHundred();
-	}
-	
-	public int getFiveHundred()
-	{
-		return vendingModel.getFiveHundred();
+		return vendingModel.getAvailableChange(index);
 	}
 	
 	public ArrayList<Slot> getSlots()

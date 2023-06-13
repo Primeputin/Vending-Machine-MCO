@@ -5,13 +5,9 @@ import java.util.ArrayList;
 public class VendingModel {
 	
 	private ArrayList<Slot> slots = new ArrayList<Slot>(); 
-	private int one;
-	private int five;
-	private int ten;
-	private int twenty;
-	private int fifty;
-	private int onehundred;
-	private int fivehundred;
+	// one, five, ten, twenty, fifty, one hundred, five hundred php
+	private final int[] DENOMINATION = {1, 5, 10, 20, 50, 100, 500};
+	private int[] availableChanges = new int[7];
 	
 	public VendingModel(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8)
 	{
@@ -23,6 +19,11 @@ public class VendingModel {
 		addSlots(item6);
 		addSlots(item7);
 		addSlots(item8);
+		
+		for (int i = 0; i < availableChanges.length; i++)
+		{
+			availableChanges[i] = 0;
+		}
 	}
 	
 	public void addSlots(Slot slot)
@@ -48,7 +49,7 @@ public class VendingModel {
 				System.out.println("[0] - Php 1 [1] - Php 5 [2] - Php 10");
 				System.out.println("[3] - Php 20 [4] - Php 50 [5] - Php 100");
 				System.out.println("[6] - Php 500 [7] - EXIT");
-				System.out.print("Enter denomination: ");
+				System.out.print("Enter DENOMINATION: ");
 				
 				choice = input.nextInt();
 				
@@ -98,47 +99,21 @@ public class VendingModel {
 	public int change(int amount, int cost)
 	{
 		int change = amount - cost;
-		int minusfivehundred = 0;
-		int minusonehundred = 0;
-		int minusfifty = 0;
-		int minustwenty = 0;
-		int minusten = 0;
-		int minusfive = 0;
-		int minusone = 0;
+		int[] minusAvailable = new int[7];
 		
-		if (change / 500 <= fivehundred && fivehundred != 0)
+		for (int i = availableChanges.length - 1; i >= 1; i--)
 		{
-			change %= 500;
-			minusfivehundred = change / 500;
+			if (change / DENOMINATION[i] <= availableChanges[i] && availableChanges[i] != 0)
+			{
+				change %= DENOMINATION[i];
+				minusAvailable[i] = change / DENOMINATION[i];
+			}
 		}
-		if (change / 100 <= onehundred && onehundred != 0)
+		
+		// for the 1 php
+		if (change / DENOMINATION[0] <= availableChanges[0] && availableChanges[0] != 0)
 		{
-			change %= 100;
-			minusonehundred = change / 100;
-		}
-		if (change / 50 <= fifty && fifty != 0)
-		{
-			change %= 50;
-			minusfifty = change / 50;
-		}
-		if (change / 20 <= twenty && twenty != 0)
-		{
-			change %= 20;
-			minustwenty = change / 20;
-		}
-		if (change / 10 <= ten && ten != 0)
-		{
-			change %= 10;
-			minusten = change / 10;
-		}
-		if (change / 5 <= five && five != 0)
-		{
-			change %= 5;
-			minusfive = change / 5;
-		}
-		if (change / 1 <= one && one != 0)
-		{
-			minusone = change;
+			minusAvailable[0] = change;
 			change = 0;
 		}
 		
@@ -149,86 +124,33 @@ public class VendingModel {
 		else
 		{
 			change = amount - cost;
-			fivehundred -= minusfivehundred;
-			onehundred -= minusonehundred;
-			fifty -= minusfifty;
-			twenty -= minustwenty;
-			ten -= minusten;
-			five -= minusfive;
-			one -= minusone;
+			for (int i = 0; i < availableChanges.length; i++)
+			{
+				availableChanges[i] -= minusAvailable[i];
+			}		
 			
 		}
 		return change;
 	}
 	
-	public void setOne(int num)
+	public void setAvailableChanges(int[] availableChanges)
 	{
-		one = num;
+		this.availableChanges = availableChanges;
 	}
 	
-	public void setFive(int num)
+	public void setAvailableChange(int quantity, int index)
 	{
-		five = num;
+		availableChanges[index] = quantity;
 	}
 	
-	public void setTen(int num)
+	public int[] getAvailableChanges()
 	{
-		ten = num;
+		return availableChanges;
 	}
 	
-	public void setTwenty(int num)
+	public int getAvailableChange(int index)
 	{
-		twenty = num;
-	}
-	
-	public void setFifty(int num)
-	{
-		fifty = num;
-	}
-	
-	public void setOneHundred(int num)
-	{
-		onehundred = num;
-	}
-	
-	public void setFiveHundred(int num)
-	{
-		fivehundred = num;
-	}
-	
-	public int getOne()
-	{
-		return one;
-	}
-	
-	public int getFive()
-	{
-		return five;
-	}
-	
-	public int getTen()
-	{
-		return ten;
-	}
-	
-	public int getTwenty()
-	{
-		return twenty;
-	}
-	
-	public int getFifty()
-	{
-		return fifty;
-	}
-	
-	public int getOneHundred()
-	{
-		return onehundred;
-	}
-	
-	public int getFiveHundred()
-	{
-		return fivehundred;
+		return availableChanges[index];
 	}
 	
 	public ArrayList<Slot> getSlots()
