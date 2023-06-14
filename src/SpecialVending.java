@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SpecialVending implements VendingInterface{
+public class SpecialVending extends AbstractVending{
 
     private SpecialVendingModel specialVendingModel;
     private SpecialVendingView specialVendingView;
