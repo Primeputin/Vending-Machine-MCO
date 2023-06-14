@@ -7,7 +7,7 @@ public class VendingModel {
 	private ArrayList<Slot> slots = new ArrayList<Slot>(); 
 	// one, five, ten, twenty, fifty, one hundred, five hundred php
 	private final int[] DENOMINATION = {1, 5, 10, 20, 50, 100, 500};
-	private int[] availableChanges = new int[7];
+	private int[] availableChanges = new int[7]; // by default all the values here are zero
 	
 	public VendingModel(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8)
 	{
@@ -19,11 +19,7 @@ public class VendingModel {
 		addSlots(item6);
 		addSlots(item7);
 		addSlots(item8);
-		
-		for (int i = 0; i < availableChanges.length; i++)
-		{
-			availableChanges[i] = 0;
-		}
+
 	}
 	
 	public void addSlots(Slot slot)
@@ -38,9 +34,9 @@ public class VendingModel {
 
 	public void resetSlots()
 	{
-		for (int i = 0; i < slots.size(); i++)
+		for (Slot slot: slots)
 		{
-			slots.get(i).resetItems();
+			slot.resetItems();
 		}
 	}
 
@@ -60,35 +56,17 @@ public class VendingModel {
 				System.out.print("Enter DENOMINATION: ");
 				
 				choice = input.nextInt();
-				
-				switch(choice)
-				{
-					case 0:
-						amount += 1;
-						break;
-					case 1:
-						amount += 5;
-						break;
-					case 2:
-						amount += 10;
-						break;
-					case 3:
-						amount += 20;
-						break;
-					case 4:
-						amount += 50;
-						break;
-					case 5:
-						amount += 100;
-						break;
-					case 6:
-						amount += 500;
-						break;
-					case 7:
-						exit = true;
-						break;
-					default:
-						System.out.println("Wrong input!!!");
+
+				switch (choice) {
+					case 0 -> amount += 1;
+					case 1 -> amount += 5;
+					case 2 -> amount += 10;
+					case 3 -> amount += 20;
+					case 4 -> amount += 50;
+					case 5 -> amount += 100;
+					case 6 -> amount += 500;
+					case 7 -> exit = true;
+					default -> System.out.println("Wrong input!!!");
 				}
 				
 			}
