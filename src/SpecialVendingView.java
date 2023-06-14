@@ -5,7 +5,7 @@ public class SpecialVendingView extends VendingView{
     public void viewVendingMachine(ArrayList<Slot> slots)
     {
         System.out.println("Customized Items:");
-        System.out.println("[100] - Burger");
+        System.out.println("[100] - Burger\n-----------------------------------------");
         super.viewVendingMachine(slots);
     }
 
