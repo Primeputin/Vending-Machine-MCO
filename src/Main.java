@@ -19,8 +19,8 @@ public class Main {
 		Other lettuce = new Other("Lettuce", 30, 17, false);
 		Other onion = new Other("Onion", 30, 17, false);
 		Meat fishfillet = new Meat("Fish fillet", 207, 172, true);
-		
-		VendingModel vendingModel;
+
+		VendingModel vendingModel = new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet);
 		VendingView vendingView = new VendingView();
 		Vending vendingMachine = new Vending(new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), vendingView);
 
@@ -38,9 +38,9 @@ public class Main {
 				
 				switch(choice)
 				{
-					case 0: 
-						vendingModel = new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet);
-						vendingMachine = new Vending(vendingModel, vendingView);
+					case 0:
+
+						vendingMachine.resetSlots();
 						
 						
 						for (int i = 0; i < vendingMachine.getAvailableChanges().length; i++)
@@ -50,7 +50,7 @@ public class Main {
 						}
 						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
 						{
-							vendingMachine.getSlots().get(i).stock(10);;
+							vendingMachine.getSlots().get(i).stock(10);
 
 						}
 
@@ -152,10 +152,7 @@ public class Main {
 					else
 					{
 						System.out.println("Your change is " + change);
-
-						vendingMachine.getSlots().get(slotIndex).setSold(vendingMachine.getSlots().get(slotIndex).getSold() + 1);
 						vendingMachine.getSlots().get(slotIndex).destroyItem();
-
 					}
 				}
 				else

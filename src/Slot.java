@@ -69,8 +69,20 @@ public class Slot extends Item{
 	public void destroyItem()
 	{
 		items.removeFirst();
+		sold += 1;
 		availability -= 1;
 	}
+
+	/**
+	 * Clear all items in the slot and set sold and availability back to zero.
+	 */
+	public void resetItems()
+	{
+		items.clear();
+		sold = 0;
+		availability = 0;
+	}
+
 	
 	/**
 	 * Sets the attribute availability to a specific value.

@@ -35,7 +35,15 @@ public class VendingModel {
 	{
 		slots.add(new Slot(item));
 	}
-	
+
+	public void resetSlots()
+	{
+		for (int i = 0; i < slots.size(); i++)
+		{
+			slots.get(i).resetItems();
+		}
+	}
+
 	public int enterCash(Scanner input)
 	{
 		int amount = 0;

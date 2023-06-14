@@ -16,7 +16,11 @@ public class Vending {
 	{
 		vendingModel.addSlots(item);
 	}
-	
+
+	public void resetSlots()
+	{
+		vendingModel.resetSlots();
+	}
 	public int enterCash(Scanner input)
 	{
 		return vendingModel.enterCash(input);
