@@ -72,4 +72,17 @@ public class SpecialVending extends AbstractVending{
         specialVendingView.viewVendingMachine(specialVendingModel.getSlots());
     }
 
+    public void setUpCustomized(Item bun, Item meat)
+    {
+        specialVendingModel.setUpCustomized(bun, meat);
+    }
+
+    public Customized getBurger() {
+        return specialVendingModel.getBurger();
+    }
+
+    public void setBurger(Customized burger) {
+        specialVendingModel.setBurger(burger);
+    }
+
 }

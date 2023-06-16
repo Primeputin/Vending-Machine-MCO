@@ -6,6 +6,11 @@ public class SpecialVendingModel extends VendingModel{
         super(item1, item2, item3, item4, item5, item6, item7, item8);
     }
 
+    public void setUpCustomized(Item bun, Item meat)
+    {
+        burger = new Customized(bun, meat);
+    }
+
     public Customized getBurger() {
         return burger;
     }

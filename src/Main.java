@@ -13,14 +13,14 @@ public class Main {
 		boolean created = false;
 		boolean specialcreated = false;
 		
-		Bun bun = new Bun("Bun", 120, 20, true);
-		Other tomato = new Other("Tomato", 25, 15, false);
-		Meat chickenfillet = new Meat("Chicken Fillet", 239, 150, true);
-		Item mozarella = new Item("Mozarella", 150, 31, false);
-		Meat patty = new Meat("Patty", 251, 169, true);
-		Other lettuce = new Other("Lettuce", 30, 17, false);
-		Other onion = new Other("Onion", 30, 17, false);
-		Meat fishfillet = new Meat("Fish fillet", 207, 172, true);
+		Item bun = new Item("Bun", 120, 20, true, 1);
+		Item tomato = new Item("Tomato", 25, 15, false, 0);
+		Item chickenfillet = new Item("Chicken Fillet", 239, 150, true, 2);
+		Item mozarella = new Item("Mozarella", 150, 31, false, 0);
+		Item patty = new Item("Patty", 251, 169, true, 2);
+		Item lettuce = new Item("Lettuce", 30, 17, false, 0);
+		Item onion = new Item("Onion", 30, 17, false, 0);
+		Item fishfillet = new Item("Fish fillet", 207, 172, true, 2);
 
 		Vending vendingMachine = new Vending(new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new VendingView());
 		SpecialVending specialVendingMachine = new SpecialVending(new SpecialVendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new SpecialVendingView());
@@ -192,7 +192,7 @@ public class Main {
 				switch(choice)
 				{
 					case 0:
-						vendingFeatures(input, specialVendingMachine);
+						specialVendingFeatures(input, specialVendingMachine);
 						break;
 					case 2:
 						exit = true;
@@ -209,11 +209,48 @@ public class Main {
 		}
 
 	}
+
+	public static void vendingSelection(int slotIndex, int amount, AbstractVending vendingMachine)
+	{
+		int change;
+
+		if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
+		{
+			if (vendingMachine.getSlots().get(slotIndex).getAvailability() > 0)
+			{
+				change = vendingMachine.change(amount, vendingMachine.getSlots().get(slotIndex).getPrice());
+
+				if (amount < vendingMachine.getSlots().get(slotIndex).getPrice())
+				{
+					System.out.println("Not enough cash.");
+					System.out.println("Your change is " + amount);
+				}
+				else if(change == -1)
+				{
+					System.out.println("Sorry, transaction cannot be made due to insufficient available change");
+					System.out.println("Your change is " + amount);
+				}
+				else
+				{
+					System.out.println("Your change is " + change);
+					vendingMachine.getSlots().get(slotIndex).destroyItem();
+				}
+			}
+			else
+			{
+				System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
+			}
+
+		}
+		else
+		{
+			System.out.println("Your change is " + amount);
+		}
+	}
 	
 	public static void vendingFeatures(Scanner input, Vending vendingMachine)
 	{
 		int amount;
-		int change;
 		int slotIndex;
 		boolean exit = false;
 		String exitornot;
@@ -224,39 +261,8 @@ public class Main {
 			vendingMachine.viewVendingMachine();
 			System.out.print("Select your item: ");
 			slotIndex = input.nextInt();
-			if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
-			{
-				if (vendingMachine.getSlots().get(slotIndex).getItems().size() > 0)
-				{
-					change = vendingMachine.change(amount, vendingMachine.getSlots().get(slotIndex).getPrice());
+			vendingSelection(slotIndex, amount, vendingMachine);
 
-					if (amount < vendingMachine.getSlots().get(slotIndex).getPrice())
-					{
-						System.out.println("Not enough cash.");
-						System.out.println("Your change is " + amount);
-					}
-					else if(change == -1)
-					{
-						System.out.println("Sorry, transaction cannot be made due to insufficient available change");
-						System.out.println("Your change is " + amount);
-					}
-					else
-					{
-						System.out.println("Your change is " + change);
-						vendingMachine.getSlots().get(slotIndex).destroyItem();
-					}
-				}
-				else
-				{
-					System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
-				}
-				
-			}
-			else
-			{
-				System.out.println("Your change is " + amount);
-			}
-			
 			do
 			{
 				System.out.print("Would like to continue [y/n]? ");
@@ -273,12 +279,19 @@ public class Main {
 		
 	}
 
-	public static void vendingFeatures(Scanner input, SpecialVending specialVendingMachine)
+	public static void specialVendingFeatures(Scanner input, SpecialVending specialVendingMachine)
 	{
 		int amount;
 		int change;
-		int slotIndex;
+		int slotIndex = 0;
+		int slotIndex2 = 0;
+		Item bun;
+		Item meat;
 		boolean exit = false;
+		boolean bunprocess;
+		boolean meatprocess;
+		boolean process;
+		boolean done;
 		String exitornot;
 		while (!exit)
 		{
@@ -287,50 +300,163 @@ public class Main {
 			specialVendingMachine.viewVendingMachine();
 			System.out.print("Select your item: ");
 			slotIndex = input.nextInt();
-			if (slotIndex < specialVendingMachine.getSlots().size() && slotIndex >= 0)
+			if (slotIndex <= specialVendingMachine.getSlots().size() && slotIndex >= 0)
 			{
-				if (specialVendingMachine.getSlots().get(slotIndex).getItems().size() > 0)
+				if (slotIndex == specialVendingMachine.getSlots().size())
 				{
-					change = specialVendingMachine.change(amount, specialVendingMachine.getSlots().get(slotIndex).getPrice());
 
-					if (amount < specialVendingMachine.getSlots().get(slotIndex).getPrice())
+					bunprocess = false;
+					meatprocess = false;
+					process = true;
+					done = false;
+
+					do
 					{
-						System.out.println("Not enough cash.");
-						System.out.println("Your change is " + amount);
+						System.out.println("Pick your bun: ");
+						slotIndex = input.nextInt();
+						if (slotIndex >= specialVendingMachine.getSlots().size() || slotIndex < 0)
+						{
+							process = false;
+						}
+						else if (specialVendingMachine.getSlots().get(slotIndex).getAvailability() > 0)
+						{
+							if (specialVendingMachine.getSlots().get(slotIndex).getItems().getFirst().getType() == 1)
+							{
+								bunprocess = true;
+							}
+							else
+							{
+								System.out.println("That ain't a bun");
+							}
+						}
+						else
+						{
+							System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
+						}
+
+
+
+					}while(!bunprocess && process);
+
+					while(!meatprocess && process)
+					{
+						System.out.println("Pick your meat: ");
+						slotIndex2 = input.nextInt();
+						if (slotIndex2 >= specialVendingMachine.getSlots().size() || slotIndex2 < 0)
+						{
+							process = false;
+						}
+						else if (specialVendingMachine.getSlots().get(slotIndex2).getAvailability() > 0)
+						{
+							if (specialVendingMachine.getSlots().get(slotIndex2).getItems().getFirst().getType() == 2)
+							{
+								meatprocess = true;
+							}
+							else
+							{
+								System.out.println("That ain't meat");
+							}
+						}
+						else
+						{
+							System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
+						}
+
 					}
-					else if(change == -1)
+
+					if (process)
 					{
-						System.out.println("Sorry, transaction cannot be made due to insufficient available change");
+						bun = new Item(specialVendingMachine.getSlots().get(slotIndex).getItems().getFirst());
+						meat = new Item(specialVendingMachine.getSlots().get(slotIndex2).getItems().getFirst());
+
+						specialVendingMachine.setUpCustomized(bun, meat);
+						specialVendingMachine.getSlots().get(slotIndex).destroyItem();
+						specialVendingMachine.getSlots().get(slotIndex2).destroyItem();
+
+						do
+						{
+							System.out.printf("Pick your other items aside from the buns (To finish picking enter %d): ", specialVendingMachine.getSlots().size());
+							slotIndex = input.nextInt();
+
+							if (slotIndex == specialVendingMachine.getSlots().size())
+							{
+								done = true;
+							}
+							else if (slotIndex >= specialVendingMachine.getSlots().size() || slotIndex < 0)
+							{
+								process = false;
+							}
+							else if (specialVendingMachine.getSlots().get(slotIndex).getAvailability() > 0)
+							{
+								if (specialVendingMachine.getSlots().get(slotIndex).getItems().getFirst().getType() == 2)
+								{
+									specialVendingMachine.getBurger().addMeat(specialVendingMachine.getSlots().get(slotIndex).getItems().getFirst());
+									specialVendingMachine.getSlots().get(slotIndex).destroyItem();
+								}
+								else if (specialVendingMachine.getSlots().get(slotIndex).getItems().getFirst().getType() == 0)
+								{
+									specialVendingMachine.getBurger().addIngredient(specialVendingMachine.getSlots().get(slotIndex).getItems().getFirst());
+									specialVendingMachine.getSlots().get(slotIndex).destroyItem();
+								}
+								else
+								{
+									System.out.println("Sorry, you cannot add this for this is a bun");
+								}
+							}
+							else
+							{
+								System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
+							}
+
+						}while(!done && process);
+
+					}
+
+					if (!process && !done)
+					{
 						System.out.println("Your change is " + amount);
 					}
 					else
 					{
-						System.out.println("Your change is " + change);
-						specialVendingMachine.getSlots().get(slotIndex).destroyItem();
+						change = specialVendingMachine.change(amount, specialVendingMachine.getBurger().getPrice());
+						if (amount < specialVendingMachine.getBurger().getPrice())
+						{
+							System.out.println("Not enough cash.");
+							System.out.println("Your change is " + amount);
+						}
+						else if(change == -1)
+						{
+							System.out.println("Sorry, transaction cannot be made due to insufficient available change");
+							System.out.println("Your change is " + amount);
+						}
+						else
+						{
+							System.out.println("Your change is " + change);
+						}
 					}
+
+					specialVendingMachine.setBurger(null); // technically delete the object
+
 				}
 				else
 				{
-					System.out.println("Sorry, the item you picked is unavailable as of the moment\nSorry for the inconvenience");
+					vendingSelection(slotIndex, amount, specialVendingMachine);
+				}
+
+				do
+				{
+					System.out.print("Would like to continue [y/n]? ");
+					input.nextLine();
+					exitornot = input.nextLine();
+				}while(exitornot.compareToIgnoreCase("y") != 0 && exitornot.compareToIgnoreCase("n") != 0);
+
+				if (exitornot.compareToIgnoreCase("n") == 0)
+				{
+					exit = true;
 				}
 
 			}
-			else
-			{
-				System.out.println("Your change is " + amount);
-			}
 
-			do
-			{
-				System.out.print("Would like to continue [y/n]? ");
-				input.nextLine();
-				exitornot = input.nextLine();
-			}while(exitornot.compareToIgnoreCase("y") != 0 && exitornot.compareToIgnoreCase("n") != 0);
-
-			if (exitornot.compareToIgnoreCase("n") == 0)
-			{
-				exit = true;
-			}
 
 		}
 

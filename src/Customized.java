@@ -5,14 +5,14 @@ public class Customized{
 	public static final String name = "Burger";
 	private int price = 0;
 	private int calories = 0;
-	private Bun bun;
-	private Stack <Meat> meats;
-	private Stack <Other> others;
+	private Item bun;
+	private Stack <Item> meats;
+	private Stack <Item> others;
 	
-	public Customized(Bun bun, Meat meat)
+	public Customized(Item bun, Item meat)
 	{
-		meats = new Stack <Meat>();
-		others = new Stack <Other>();
+		meats = new Stack <Item>();
+		others = new Stack <Item>();
 		
 		this.bun = bun;
 		price += bun.getPrice();
@@ -20,16 +20,16 @@ public class Customized{
 		addMeat(meat);
 	}
 	
-	public void addMeat(Meat meat)
+	public void addMeat(Item meat)
 	{
-		meats.add(meat);
+		meats.add(new Item(meat));
 		price += meat.getPrice();
 		calories += meat.getCalories();
 	}
 	
-	public void addIngredient(Other ingredient)
+	public void addIngredient(Item ingredient)
 	{
-		others.add(ingredient);
+		others.add(new Item(ingredient));
 		price += ingredient.getPrice();
 		calories += ingredient.getCalories();
 	}
@@ -44,7 +44,7 @@ public class Customized{
 		this.price = price;
 	}
 	
-	public void setBun(Bun bun)
+	public void setBun(Item bun)
 	{
 		this.bun = bun;
 	}
@@ -59,17 +59,17 @@ public class Customized{
 		return price;
 	}
 	
-	public Bun getBun()
+	public Item getBun()
 	{
 		return bun;
 	}
 	
-	public Stack <Meat> getMeats()
+	public Stack <Item> getMeats()
 	{
 		return meats;
 	}
 	
-	public Stack <Other> getOthers()
+	public Stack <Item> getOthers()
 	{
 		return others;
 	}

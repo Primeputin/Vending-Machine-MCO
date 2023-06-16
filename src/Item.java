@@ -15,6 +15,7 @@ public class Item {
 	private int calories;
 	private int price;
 	private boolean individual;
+	int type; // 0 = Others 1= Bun 2= Meat
 	
 	/**
 	 * This constructor method takes in the necessary information that constitute an Item.
@@ -23,13 +24,15 @@ public class Item {
 	 * @param calories is the Item's amount of calories
 	 * @param price is the cost of the Item
 	 * @param individual True means that it cannot be bought individually
+	 * @param type is the type of item it is 0 = Others 1= Bun 2= Meat
 	 */
-	public Item(String name, int calories, int price, boolean individual)
+	public Item(String name, int calories, int price, boolean individual, int type)
 	{
 		this.name = name;
 		this.calories = calories;
 		this.price = price;
 		this.individual = individual;
+		this.type = type;
 	}
 	
 	/**
@@ -44,6 +47,7 @@ public class Item {
 		this.setCalories(item.getCalories());
 		this.setPrice(item.getPrice());
 		this.setIndividual(item.getIndividual());
+		this.setType(item.getType());
 	}
 	
 	/**
@@ -85,6 +89,17 @@ public class Item {
 	{
 		this.individual = individual;
 	}
+
+	/**
+	 * Sets the attribute type.
+	 * 0 = Others 1= Bun 2= Meat
+	 *
+	 * @param type will be the new value of the attribute type
+	 */
+	public void setType(int type)
+	{
+		this.type = type;
+	}
 	
 	/**
 	 * Returns the attribute string name.
@@ -125,6 +140,15 @@ public class Item {
 	{
 		return individual;
 	}
-	
-	
+
+	/**
+	 * Returns the attribute type.
+	 * 0 = Others 1= Bun 2= Meat
+	 *
+	 * @return the attribute type
+	 */
+	public int getType()
+	{
+		return this.type;
+	}
 }

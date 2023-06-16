@@ -26,10 +26,11 @@ public class Slot extends Item{
 	 * @param calories is the Item's amount of calories
 	 * @param price is the cost of the Item
 	 * @param individual True means that it cannot be bought individually
+	 * @param type is the type of item it is 0 = Others 1= Bun 2= Meat
 	 */
-	public Slot(String name, int calories, int price, boolean individual)
+	public Slot(String name, int calories, int price, boolean individual, int type)
 	{
-		super(name, calories, price, individual);	
+		super(name, calories, price, individual, type);
 		items = new LinkedList<Item>();
 		availability = 0;
 		sold = 0;
@@ -58,7 +59,7 @@ public class Slot extends Item{
 	{
 		for (int i = 0; i < num; i++)
 		{
-			items.add(new Item(this.getName(), this.getCalories(), this.getPrice(), this.getIndividual()));
+			items.add(new Item(this.getName(), this.getCalories(), this.getPrice(), this.getIndividual(), this.getType()));
 			availability++;
 		}
 	}
