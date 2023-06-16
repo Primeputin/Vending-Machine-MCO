@@ -85,4 +85,9 @@ public class SpecialVending extends AbstractVending{
         specialVendingModel.setBurger(burger);
     }
 
+    public void makingBurgerProcess()
+    {
+        specialVendingView.makingBurgerProcess(specialVendingModel.getBurger());
+    }
+
 }

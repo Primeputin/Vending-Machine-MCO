@@ -431,6 +431,7 @@ public class Main {
 						}
 						else
 						{
+							specialVendingMachine.makingBurgerProcess();
 							System.out.println("Your change is " + change);
 						}
 					}
@@ -443,20 +444,23 @@ public class Main {
 					vendingSelection(slotIndex, amount, specialVendingMachine);
 				}
 
-				do
-				{
-					System.out.print("Would like to continue [y/n]? ");
-					input.nextLine();
-					exitornot = input.nextLine();
-				}while(exitornot.compareToIgnoreCase("y") != 0 && exitornot.compareToIgnoreCase("n") != 0);
-
-				if (exitornot.compareToIgnoreCase("n") == 0)
-				{
-					exit = true;
-				}
-
+			}
+			else
+			{
+				System.out.println("Your change is " + amount);
 			}
 
+			do
+			{
+				System.out.print("Would like to continue [y/n]? ");
+				input.nextLine();
+				exitornot = input.nextLine();
+			}while(exitornot.compareToIgnoreCase("y") != 0 && exitornot.compareToIgnoreCase("n") != 0);
+
+			if (exitornot.compareToIgnoreCase("n") == 0)
+			{
+				exit = true;
+			}
 
 		}
 
