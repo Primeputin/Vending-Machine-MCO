@@ -216,7 +216,12 @@ public class Main {
 
 		if (slotIndex < vendingMachine.getSlots().size() && slotIndex >= 0)
 		{
-			if (vendingMachine.getSlots().get(slotIndex).getAvailability() > 0)
+			if (!vendingMachine.getSlots().get(slotIndex).getIndividual())
+			{
+				System.out.println("Sorry, this item is only available as add-ons");
+				System.out.println("Your change is " + amount);
+			}
+			else if (vendingMachine.getSlots().get(slotIndex).getAvailability() > 0)
 			{
 				change = vendingMachine.change(amount, vendingMachine.getSlots().get(slotIndex).getPrice());
 
