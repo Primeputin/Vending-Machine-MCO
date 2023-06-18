@@ -12,7 +12,6 @@ import java.util.LinkedList;
  *
  */
 public class Slot extends Item{
-
 	private int availability;
 	private int sold;
 	private LinkedList<Item> items;
@@ -35,7 +34,6 @@ public class Slot extends Item{
 		availability = 0;
 		sold = 0;
 	}
-	
 	/**
 	 * This constructor method takes in an Item object as a parameter.
 	 * It technically does the same thing as the other constructor method.
@@ -49,7 +47,14 @@ public class Slot extends Item{
 		availability = 0;
 		sold = 0;
 	}
-	
+	public void setPrice(int price)
+	{
+		super.setPrice(price);
+		for(int i=0;i<availability;i++)
+		{
+			items.get(i).setPrice(price);
+		}
+	}
 	/**
 	 * This method stocks a number of Item instance in a slot
 	 * 
