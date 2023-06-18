@@ -66,13 +66,18 @@ public class Vending extends AbstractVending{
 		return vendingModel.getSlots();
 	}
 
+	@Override
 	public int getDENOMINATION( int index)
 	{
 		return this.vendingModel.getDENOMINATION(index);
 	}
+
+	@Override
 	public void viewVendingMachine()
 	{
 		vendingView.viewVendingMachine(vendingModel.getSlots());
 	}
+
+	@Override
 	public void printReport(){vendingView.printReport(vendingModel.getSlots());}
 }
