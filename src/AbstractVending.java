@@ -12,7 +12,9 @@ public abstract class AbstractVending{
     abstract int[] getAvailableChanges();
     abstract int getAvailableChange(int index);
     abstract ArrayList<Slot> getSlots();
+    abstract int getDENOMINATION(int index);
     abstract void viewVendingMachine();
+    abstract void printReport();
 
 
 }

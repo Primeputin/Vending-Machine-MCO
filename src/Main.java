@@ -130,7 +130,7 @@ public class Main {
 		return choice;
 	}
 
-	public static void vendingMaintenance(Vending vendingMachine, Scanner input)
+	public static void vendingMaintenance(AbstractVending vendingMachine, Scanner input)
 	{
 		boolean exit = false;
 		int choice,food=-1, num=0;
@@ -319,6 +319,9 @@ public class Main {
 				{
 					case 0:
 						specialVendingFeatures(input, specialVendingMachine);
+						break;
+					case 1:
+						vendingMaintenance(specialVendingMachine, input);
 						break;
 					case 2:
 						exit = true;

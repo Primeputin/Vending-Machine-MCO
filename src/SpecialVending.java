@@ -67,10 +67,19 @@ public class SpecialVending extends AbstractVending{
     }
 
     @Override
+    public int getDENOMINATION(int index)
+    {
+        return specialVendingModel.getDENOMINATION(index);
+    }
+
+    @Override
     public void viewVendingMachine()
     {
         specialVendingView.viewVendingMachine(specialVendingModel.getSlots());
     }
+
+    @Override
+    public void printReport(){specialVendingView.printReport(specialVendingModel.getSlots());}
 
     public void setUpCustomized(Item bun, Item meat)
     {
