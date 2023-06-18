@@ -91,8 +91,8 @@ public class VendingModel {
 		{
 			if (change / DENOMINATION[i] <= availableChanges[i] && availableChanges[i] != 0)
 			{
-				change %= DENOMINATION[i];
 				minusAvailable[i] = change / DENOMINATION[i];
+				change %= DENOMINATION[i];
 			}
 		}
 		
