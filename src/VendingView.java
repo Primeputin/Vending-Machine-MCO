@@ -118,8 +118,8 @@ public class VendingView {
 		System.out.println("==================================================================");
 		for (int i=0; i<slots.size(); i++)
 		{
-			total = total + (slots.get(i).getPrice()*slots.get(i).getSold());
-			System.out.printf("%-15s|\t%8d\t%8d\t%4d Php\n",slots.get(i).getName(),slots.get(i).getAvailability()+slots.get(i).getSold(),slots.get(i).getAvailability(),slots.get(i).getPrice()*slots.get(i).getSold());
+			total = total + slots.get(i).getSale(i);
+			System.out.printf("%-15s|\t%8d\t%8d\t%4d Php\n",slots.get(i).getName(),slots.get(i).getAvailability()+slots.get(i).getSold(),slots.get(i).getAvailability(),slots.get(i).getSale(i));
 		}
 		System.out.println("__________________________________________________________________\n");
 		System.out.printf("Total Sales: %d Php\n", total);

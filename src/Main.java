@@ -178,6 +178,7 @@ public class Main {
 						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
 						{
 							vendingMachine.getSlots().get(i).setSold(0);
+							vendingMachine.getSlots().get(i).setSale(0);
 						}
 						break;
 					case 1:
@@ -217,6 +218,7 @@ public class Main {
 						{
 							total = total + (vendingMachine.getSlots().get(i).getPrice()*vendingMachine.getSlots().get(i).getSold());
 							vendingMachine.getSlots().get(i).setSold(0);
+							vendingMachine.getSlots().get(i).setSale(0);
 						}
 						System.out.printf("%d Php collected\n",total);
 						break;

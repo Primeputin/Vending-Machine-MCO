@@ -14,6 +14,7 @@ import java.util.LinkedList;
 public class Slot extends Item{
 	private int availability;
 	private int sold;
+	private int sale;
 	private LinkedList<Item> items;
 	
 	/**
@@ -76,6 +77,7 @@ public class Slot extends Item{
 	{
 		items.removeFirst();
 		sold += 1;
+		sale += this.getPrice();
 		availability -= 1;
 	}
 
@@ -109,7 +111,6 @@ public class Slot extends Item{
 	{
 		this.sold = sold;
 	}
-	
 	/**
 	 * Sets the attribute items.
 	 * @param items will be the linked list of the attribute items
@@ -118,7 +119,10 @@ public class Slot extends Item{
 	{
 		this.items = items;
 	}
-	
+	public void setSale(int sale)
+	{
+		this.sale = sale;
+	}
 	/**
 	 * Returns the attribute availability.
 	 * 
@@ -138,7 +142,7 @@ public class Slot extends Item{
 	{
 		return sold;
 	}
-	
+
 	/**
 	 * Returns the attribute linked list items.
 	 * 
@@ -147,5 +151,15 @@ public class Slot extends Item{
 	public LinkedList<Item> getItems()
 	{
 		return items;
+	}
+
+	public int setItems()
+	{
+		return sale;
+	}
+
+	public int getSale(int i)
+	{
+		return sale;
 	}
 }
