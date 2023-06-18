@@ -143,4 +143,11 @@ public class VendingModel {
 	{
 		return slots;
 	}
+	public int getDENOMINATION(int index)
+	{
+		return this.DENOMINATION[index];
+	}
+
+
+
 }

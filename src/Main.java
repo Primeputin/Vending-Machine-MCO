@@ -84,7 +84,142 @@ public class Main {
 		
 		input.close();
 	}
-	
+	public static void vendingMaintenance(Vending vendingMachine, Scanner input)
+	{
+		boolean exit = false;
+		int choice,food=-1, num=0;
+
+		try {
+			while (!exit) {
+				System.out.println("0 - Restocking");
+				System.out.println("1 - Set item price");
+				System.out.println("2 - collect money");
+				System.out.println("3 - replenish money");
+				System.out.println("4 - Print summary of transactions");
+				System.out.println("5 - Exit maintenance");
+				choice = input.nextInt();
+
+				switch (choice) {
+					case 0:
+						System.out.printf("%28s", "Select which item to stock\n");
+						System.out.println("==============================================");
+						for (int i = 0; i < vendingMachine.getSlots().size(); i++) {
+							System.out.printf("%d: %-15s: %d items\n", i, vendingMachine.getSlots().get(i).getName(), vendingMachine.getSlots().get(i).getAvailability());
+						}
+						System.out.println("==============================================");
+						do
+						{
+							food = input.nextInt();
+							if (food < 0 || food >= vendingMachine.getSlots().size())
+							{
+								System.out.println("Input error, please try again");
+							}
+						}while (food < 0 || food > vendingMachine.getSlots().size());
+						System.out.println("==============================================");
+						System.out.printf("How much %s/s will you stock?\n", vendingMachine.getSlots().get(food).getName());
+						System.out.println("==============================================");
+						do
+						{
+							num = input.nextInt();
+							if (num < 0) {
+								System.out.println("Input error, please try again");
+							}
+						}while (num < 0);
+						vendingMachine.getSlots().get(food).stock(num);
+						System.out.println("==============================================");
+						System.out.printf("The %s/s is/are now %d\n", vendingMachine.getSlots().get(food).getName(), vendingMachine.getSlots().get(food).getAvailability());
+						System.out.println("==============================================");
+						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
+						{
+							vendingMachine.getSlots().get(i).setSold(0);
+						}
+						break;
+					case 1:
+						System.out.printf("%28s", "Select which item to change price\n");
+						System.out.println("==============================================");
+						for (int i = 0; i < vendingMachine.getSlots().size(); i++)
+						{
+							System.out.printf("%d: %-15s: %d php\n", i, vendingMachine.getSlots().get(i).getName(), vendingMachine.getSlots().get(i).getPrice());
+						}
+						System.out.println("==============================================");
+						do
+						{
+							food = input.nextInt();
+							if (food < 0 || food >= vendingMachine.getSlots().size())
+							{
+								System.out.println("Input error, please try again");
+							}
+						}while (food < 0 || food > vendingMachine.getSlots().size());
+						System.out.println("==============================================");
+						System.out.printf("How much will the %s/s be?\n", vendingMachine.getSlots().get(food).getName());
+						System.out.println("==============================================");
+						do
+						{
+							num = input.nextInt();
+							if (num < 0) {
+								System.out.println("Input error, please try again");
+							}
+						}while (num < 0);
+						vendingMachine.getSlots().get(food).setPrice(num);
+						System.out.println("==============================================");
+						System.out.printf("The cost of the %s/s is/are now %d Php\n", vendingMachine.getSlots().get(food).getName(), vendingMachine.getSlots().get(food).getPrice());
+						System.out.println("==============================================");
+						break;
+					case 2:
+						long total =0;
+						for (int i=0; i<vendingMachine.getSlots().size(); i++)
+						{
+							total = total + (vendingMachine.getSlots().get(i).getPrice()*vendingMachine.getSlots().get(i).getSold());
+							vendingMachine.getSlots().get(i).setSold(0);
+						}
+						System.out.printf("%d Php collected\n",total);
+						break;
+					case 3:
+						int money,qty;
+						for(int i=0;i<vendingMachine.getAvailableChanges().length;i++)
+						{
+							System.out.printf("[%d]: %d php (%d)\n", i,vendingMachine.getDENOMINATION(i),vendingMachine.getAvailableChange(i));
+						}
+						do {
+
+							System.out.println("What do you want to replenish");
+							money = input.nextInt();
+							if(money < 0 ||money >= vendingMachine.getAvailableChanges().length)
+							{
+								System.out.println("Wrong input");
+							}
+						}while(money < 0 ||money >= vendingMachine.getAvailableChanges().length);
+						System.out.printf("What is the quantity you want to add to the %d php\n",vendingMachine.getDENOMINATION(money));
+						do
+						{
+							qty = input.nextInt();
+							if(qty<1)
+							{
+								System.out.println("Wrong input");
+							}
+						}while(qty<1);
+						vendingMachine.setAvailableChange(qty+vendingMachine.getAvailableChange(money),money);
+						System.out.printf("Number of available changes is set to %d\n",vendingMachine.getAvailableChange(money));
+						break;
+					case 4:
+						vendingMachine.printReport();
+						break;
+					case 5:
+						exit = true;
+						break;
+					default:
+						System.out.println("Try another value!!!");
+				}
+			}
+		}
+		catch (InputMismatchException e)
+		{
+			System.out.println("Input error");
+			e.printStackTrace();
+		}
+	}
+
+
 	public static void testingVendingMachine(Scanner input, Vending vendingMachine)
 	{
 		boolean exit = false;
@@ -103,7 +238,10 @@ public class Main {
 					case 0:
 						vendingFeatures(input, vendingMachine);
 						break;
-					case 2: 
+					case 1:
+						vendingMaintenance(vendingMachine, input);
+					case 2:
+
 						exit = true;
 						break;
 					default:

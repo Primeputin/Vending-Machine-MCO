@@ -55,9 +55,14 @@ public class Vending {
 	{
 		return vendingModel.getSlots();
 	}
-	
+
+	public int getDENOMINATION( int index)
+	{
+		return this.vendingModel.getDENOMINATION(index);
+	}
 	public void viewVendingMachine()
 	{
 		vendingView.viewVendingMachine(vendingModel.getSlots());
 	}
+	public void printReport(){vendingView.printReport(vendingModel.getSlots());}
 }
