@@ -220,14 +220,18 @@ public class Main {
 							vendingMachine.getSlots().get(i).setSold(0);
 							vendingMachine.getSlots().get(i).setSale(0);
 						}
+						System.out.println("==============================================");
 						System.out.printf("%d Php collected\n",total);
+						System.out.println("==============================================");
 						break;
 					case 3:
 						int money,qty;
+						System.out.println("==============================================");
 						for(int i=0;i<vendingMachine.getAvailableChanges().length;i++)
 						{
 							System.out.printf("[%d]: %d php (%d)\n", i,vendingMachine.getDENOMINATION(i),vendingMachine.getAvailableChange(i));
 						}
+						System.out.println("==============================================");
 						do {
 
 							System.out.println("What do you want to replenish");
@@ -237,6 +241,7 @@ public class Main {
 								System.out.println("Wrong input");
 							}
 						}while(money < 0 ||money >= vendingMachine.getAvailableChanges().length);
+						System.out.println("==============================================");
 						System.out.printf("What is the quantity you want to add to the %d php\n",vendingMachine.getDENOMINATION(money));
 						do
 						{
@@ -246,8 +251,10 @@ public class Main {
 								System.out.println("Wrong input");
 							}
 						}while(qty<1);
+						System.out.println("==============================================");
 						vendingMachine.setAvailableChange(qty+vendingMachine.getAvailableChange(money),money);
 						System.out.printf("Number of available changes is set to %d\n",vendingMachine.getAvailableChange(money));
+						System.out.println("==============================================");
 						break;
 					case 4:
 						vendingMachine.printReport();
