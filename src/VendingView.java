@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
 public class VendingView {
-	
+	/**
+	 * Displays the interface for when you are inserting cash or buying from a vending machine
+	 *
+	 * @param slots refers to the arraylist of slots
+	 */
 	public void viewVendingMachine(ArrayList<Slot> slots)
 	{
 		int i;
@@ -98,6 +102,12 @@ public class VendingView {
 		System.out.println("");
 
 	}
+
+	/**
+	 * Prints the summary of sales and current stock, respective to the previous restocking
+	 *
+	 * @param slots refers to the array list of slots and their respective attributes
+	 */
 	public void printReport(ArrayList<Slot> slots)
 	{
 		int total=0;
@@ -118,8 +128,8 @@ public class VendingView {
 		System.out.println("==================================================================");
 		for (int i=0; i<slots.size(); i++)
 		{
-			total = total + slots.get(i).getSale(i);
-			System.out.printf("%-15s|\t%8d\t%8d\t%4d Php\n",slots.get(i).getName(),slots.get(i).getAvailability()+slots.get(i).getSold(),slots.get(i).getAvailability(),slots.get(i).getSale(i));
+			total = total + slots.get(i).getSale();
+			System.out.printf("%-15s|\t%8d\t%8d\t%4d Php\n",slots.get(i).getName(),slots.get(i).getAvailability()+slots.get(i).getSold(),slots.get(i).getAvailability(),slots.get(i).getSale());
 		}
 		System.out.println("__________________________________________________________________\n");
 		System.out.printf("Total Sales: %d Php\n", total);

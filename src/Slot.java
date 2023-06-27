@@ -48,6 +48,12 @@ public class Slot extends Item{
 		availability = 0;
 		sold = 0;
 	}
+
+	/**
+	 *This method sets the desired price for the chosen item
+	 *
+	 * @param price is the value of the price to be placed in the chosen item
+	 */
 	public void setPrice(int price)
 	{
 		super.setPrice(price);
@@ -82,7 +88,7 @@ public class Slot extends Item{
 	}
 
 	/**
-	 * Clear all items in the slot and set sold and availability back to zero.
+	 * Clear all items in the slot, set sold and availability back to zero.
 	 */
 	public void resetItems()
 	{
@@ -119,6 +125,12 @@ public class Slot extends Item{
 	{
 		this.items = items;
 	}
+
+	/**
+	 *This method sets the total sales of the specified item which is independent from sold methods
+	 *
+	 * @param sale is the value of the sale for the specified slot
+	 */
 	public void setSale(int sale)
 	{
 		this.sale = sale;
@@ -146,19 +158,19 @@ public class Slot extends Item{
 	/**
 	 * Returns the attribute linked list items.
 	 * 
-	 * @return returns the attribute linked list items
+	 * @return the attribute linked list items
 	 */
 	public LinkedList<Item> getItems()
 	{
 		return items;
 	}
 
-	public int setItems()
-	{
-		return sale;
-	}
-
-	public int getSale(int i)
+	/**
+	 *This method gets the total sales of a slot independent to the current price of item
+	 *
+	 * @return the total sale of the specific item in the slot
+	 */
+	public int getSale()
 	{
 		return sale;
 	}

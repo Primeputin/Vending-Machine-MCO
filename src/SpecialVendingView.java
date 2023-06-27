@@ -37,7 +37,7 @@ public class SpecialVendingView extends VendingView{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Burger in your area!\nEnjoy your food!\n享受你的食物！\nBon appétit!\nSubarashiiiiiii!!!");
+        System.out.println("Burger in your area!\nEnjoy your food!\n享受你的食物！\nBon appétit!\nItadakimasu!!!\nSubarashiiiiiii!!!");
 
     }
 

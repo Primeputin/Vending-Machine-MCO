@@ -2,9 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		boolean exit = false;
 		Scanner input = new Scanner(System.in);
@@ -83,6 +81,13 @@ public class Main {
 		input.close();
 	}
 
+	/**
+	 * This method asks the user to choose between the special vending machine or just a regular based on how the user wants the machine to operate
+	 * @param input refers to the users input on which vending machine was chosen
+	 * @param vendingMachine refers to the regular vending machine class
+	 * @param specialVendingMachine refers to the special regular vending machine class
+	 * @return an int  for the choice of the user
+	 */
 	public static int chooseVendingMachine(Scanner input, Vending vendingMachine, SpecialVending specialVendingMachine) {
 		int choice = 0;
 		System.out.println("[0] - Regular Vending Machine      [1] - Special Vending Machine");
@@ -130,6 +135,12 @@ public class Main {
 		return choice;
 	}
 
+	/**
+	 * This method refers to the maintenance feature of the vending machine
+	 *
+	 * @param vendingMachine refers to the vending machine class
+	 * @param input refers to the input of the user
+	 */
 	public static void vendingMaintenance(AbstractVending vendingMachine, Scanner input)
 	{
 		boolean exit = false;
@@ -274,6 +285,11 @@ public class Main {
 		}
 	}
 
+	/**
+	 * This method executes the vending machines main actions where the user can either be the owner or a buyer
+	 * @param input refers to the input of the user
+	 * @param vendingMachine refers to the Vending class
+	 */
 	public static void testingVendingMachine(Scanner input, Vending vendingMachine)
 	{
 		boolean exit = false;
@@ -311,6 +327,11 @@ public class Main {
 		
 	}
 
+	/**
+	 * This method executes the vending machines main actions where the user can either be the owner or a buyer
+	 * @param input refers to the input of the user
+	 * @param specialVendingMachine refers to the special Vending class
+	 */
 	public static void testingVendingMachine(Scanner input, SpecialVending specialVendingMachine)
 	{
 		boolean exit = false;
@@ -348,6 +369,12 @@ public class Main {
 
 	}
 
+	/**
+	 * This method executes the special vending machine
+	 * @param slotIndex
+	 * @param amount
+	 * @param vendingMachine
+	 */
 	public static void vendingSelection(int slotIndex, int amount, AbstractVending vendingMachine)
 	{
 		int change;
@@ -390,7 +417,12 @@ public class Main {
 			System.out.println("Your change is " + amount);
 		}
 	}
-	
+
+	/**
+	 * This method executes the avaiable feature to the regular vending machine
+	 * @param input is the input of the user
+	 * @param vendingMachine refers to the Vending class
+	 */
 	public static void vendingFeatures(Scanner input, Vending vendingMachine)
 	{
 		int amount;
@@ -422,6 +454,11 @@ public class Main {
 		
 	}
 
+	/**
+	 * This method executes the special vending machine features
+	 * @param input refers to the input of the user
+	 * @param specialVendingMachine refers to the specialVending class
+	 */
 	public static void specialVendingFeatures(Scanner input, SpecialVending specialVendingMachine)
 	{
 		int amount;
