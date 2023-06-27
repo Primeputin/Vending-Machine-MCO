@@ -1,6 +1,17 @@
 import java.util.ArrayList;
 
+/**
+ * A class that contains things for displaying related to a special vending machine
+ *
+ * @author Vladimir Tang
+ */
 public class SpecialVendingView extends VendingView{
+    /**
+     * Displays the interface for when you are inserting cash or buying from a special vending machine.
+     * This includes the showing of the customized burger.
+     *
+     * @param slots refers to the arraylist of slots
+     */
     @Override
     public void viewVendingMachine(ArrayList<Slot> slots)
     {
@@ -10,6 +21,11 @@ public class SpecialVendingView extends VendingView{
         System.out.printf("[%d] - Burger\n", slots.size());
     }
 
+    /**
+     * Showing the process of the burger being made.
+     *
+     * @param burger is the customized item to display about.
+     */
     public void makingBurgerProcess(Customized burger)
     {
         int i;

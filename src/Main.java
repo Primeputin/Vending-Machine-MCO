@@ -82,8 +82,9 @@ public class Main {
 	}
 
 	/**
-	 * This method asks the user to choose between the special vending machine or just a regular based on how the user wants the machine to operate
-	 * @param input refers to the users input on which vending machine was chosen
+	 * This method asks the user to choose between the special vending machine or just a regular based on how the user wants the machine to operater.
+	 *
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @param vendingMachine refers to the regular vending machine class
 	 * @param specialVendingMachine refers to the special regular vending machine class
 	 * @return an int  for the choice of the user
@@ -138,8 +139,8 @@ public class Main {
 	/**
 	 * This method refers to the maintenance feature of the vending machine
 	 *
-	 * @param vendingMachine refers to the vending machine class
-	 * @param input refers to the input of the user
+	 * @param vendingMachine refers to the any subclass under AbstractVending
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 */
 	public static void vendingMaintenance(AbstractVending vendingMachine, Scanner input)
 	{
@@ -286,8 +287,9 @@ public class Main {
 	}
 
 	/**
-	 * This method executes the vending machines main actions where the user can either be the owner or a buyer
-	 * @param input refers to the input of the user
+	 * This method executes the vending machines main actions where the user can either be the owner or a buyer.
+	 *
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @param vendingMachine refers to the Vending class
 	 */
 	public static void testingVendingMachine(Scanner input, Vending vendingMachine)
@@ -329,7 +331,7 @@ public class Main {
 
 	/**
 	 * This method executes the vending machines main actions where the user can either be the owner or a buyer
-	 * @param input refers to the input of the user
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @param specialVendingMachine refers to the special Vending class
 	 */
 	public static void testingVendingMachine(Scanner input, SpecialVending specialVendingMachine)
@@ -370,10 +372,11 @@ public class Main {
 	}
 
 	/**
-	 * This method executes the special vending machine
-	 * @param slotIndex
-	 * @param amount
-	 * @param vendingMachine
+	 * This method does the transaction of a vending machine.
+	 *
+	 * @param slotIndex is the slot number of the item picked
+	 * @param amount is the total amount to be paid
+	 * @param vendingMachine is any subclass of the AbstractVending
 	 */
 	public static void vendingSelection(int slotIndex, int amount, AbstractVending vendingMachine)
 	{
@@ -419,8 +422,9 @@ public class Main {
 	}
 
 	/**
-	 * This method executes the avaiable feature to the regular vending machine
-	 * @param input is the input of the user
+	 * This method executes the avaiable feature to the regular vending machine.
+	 *
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @param vendingMachine refers to the Vending class
 	 */
 	public static void vendingFeatures(Scanner input, Vending vendingMachine)
@@ -455,8 +459,9 @@ public class Main {
 	}
 
 	/**
-	 * This method executes the special vending machine features
-	 * @param input refers to the input of the user
+	 * This method executes the special vending machine features.
+	 *
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @param specialVendingMachine refers to the specialVending class
 	 */
 	public static void specialVendingFeatures(Scanner input, SpecialVending specialVendingMachine)

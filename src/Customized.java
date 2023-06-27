@@ -19,7 +19,7 @@ public class Customized{
 	private Stack <Item> others;
 
 	/**
-	 * This constructor method instantiates the needed stacks and variables needed for the special vending machine
+	 * This constructor method instantiates the needed stacks and variables needed for the special vending machine.
 	 *
 	 * @param bun refers to the item class of bun
 	 * @param meat refers to  the item class of meat
@@ -36,7 +36,7 @@ public class Customized{
 	}
 
 	/**
-	 * This method adds a meat into the stack of meats in the order
+	 * This method adds a meat into the stack of meats in the order.
 	 *
 	 * @param meat refers to the item meat
 	 */
@@ -47,7 +47,7 @@ public class Customized{
 		calories += meat.getCalories();
 	}
 	/**
-	 * This method adds an ingredient into the stack of ingredients in the order
+	 * This method adds an ingredient into the stack of ingredients in the order.
 	 *
 	 * @param ingredient refers to the item ingredient
 	 */
@@ -59,7 +59,7 @@ public class Customized{
 	}
 
 	/**
-	 * This method sets the calories of the order
+	 * This method sets the calories of the order.
 	 *
 	 * @param calories refers to the total calories
 	 */
@@ -69,7 +69,7 @@ public class Customized{
 	}
 
 	/**
-	 * This method sets the price of the order
+	 * This method sets the price of the order.
 	 *
 	 * @param price refers to the price of the order
 	 */
@@ -79,7 +79,7 @@ public class Customized{
 	}
 
 	/**
-	 * This method changes the bun
+	 * This method changes the bun.
 	 *
 	 * @param bun refers to the item bun
 	 */
@@ -89,7 +89,7 @@ public class Customized{
 	}
 
 	/**
-	 * This method gets the calories of the order
+	 * This method gets the calories of the order.
 	 *
 	 * @return the calories of the order
 	 */
@@ -99,7 +99,7 @@ public class Customized{
 	}
 
 	/**
-	 *This method gets the price of the order
+	 *This method gets the price of the order.
 	 *
 	 * @return the price of ther order
 	 */
@@ -109,7 +109,7 @@ public class Customized{
 	}
 
 	/**
-	 * This method gets the bun
+	 * This method gets the bun.
 	 *
 	 * @return the item bun
 	 */
@@ -119,7 +119,8 @@ public class Customized{
 	}
 
 	/**
-	 * This method gets the meat
+	 * This method gets the meat.
+	 *
 	 * @return the meats stack
 	 */
 	public Stack <Item> getMeats()
@@ -128,7 +129,8 @@ public class Customized{
 	}
 
 	/**
-	 * This method gets the otehr ingredients aside from the meat
+	 * This method gets the otehr ingredients aside from the meat.
+	 *
 	 * @return the stack of other ingredients
 	 */
 	public Stack <Item> getOthers()

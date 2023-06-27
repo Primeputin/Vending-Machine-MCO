@@ -1,8 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * A class that contains things for displaying related to a regular vending machine
+ *
+ * @author Vladimir Tang
+ */
 public class VendingView {
 	/**
-	 * Displays the interface for when you are inserting cash or buying from a vending machine
+	 * Displays the interface for when you are inserting cash or buying from a vending machine.
 	 *
 	 * @param slots refers to the arraylist of slots
 	 */

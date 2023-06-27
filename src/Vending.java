@@ -17,9 +17,10 @@ public class Vending extends AbstractVending{
 	private boolean created = false;
 
 	/**
-	 * This constructor method creates a vending model and a vending view class
-	 * @param vendingModel refers to the VendingModel class
-	 * @param vendingView refers to the VendingView class
+	 * This constructor method creates a vending model and a vending view class.
+	 *
+	 * @param vendingModel refers to the VendingModel object
+	 * @param vendingView refers to the VendingView object
 	 */
 	public Vending(VendingModel vendingModel, VendingView vendingView)
 	{
@@ -28,7 +29,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * Creates a new slot where a new item will be placed
+	 * Creates a new slot where a new item will be placed.
 	 *
 	 * @param item refers to the item class in which it will be placed in a new slot
 	 */
@@ -48,9 +49,9 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 *This method calls the method in slots to initiate the vending machine to accept cash
+	 *This method calls the method in slots to initiate the vending machine to accept cash.
 	 *
-	 * @param input is the index for which cash is inserted
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @return the amount for the total cash inserted
 	 */
 	@Override
@@ -60,7 +61,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method calls the method in the vendingModel class to return the change of a user
+	 * This method calls the method in the vendingModel class to return the change of a user.
 	 *
 	 * @param amount the amount of cash placed in the vending machine
 	 * @param cost the price of the item bought
@@ -73,7 +74,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method sets the array of integer for the available changes
+	 * This method sets the array of integer for the available changes.
 	 *
 	 * @param availableChanges is the array of available changes respective to the vending machines current number of bills
 	 */
@@ -84,7 +85,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method sets the available change of a specific bill or coin
+	 * This method sets the available change of a specific bill or coin.
 	 *
 	 * @param quantity the number of bills or coins to be placed
 	 * @param index to which bill of coin will be added to
@@ -96,7 +97,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method returns the array for the available change
+	 * This method returns the array for the available change.
 	 *
 	 * @return the array of ints for the number of available change with respect to their value
 	 */
@@ -106,7 +107,7 @@ public class Vending extends AbstractVending{
 		return vendingModel.getAvailableChanges();
 	}
 	/**
-	 * This method returns the available change
+	 * This method returns the available change.
 	 *
 	 * @param index the index at which bill or coin the vending machine is referring to
 	 * @return the number of available change based on the index
@@ -118,7 +119,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method returns the slots of the vending machine
+	 * This method returns the slots of the vending machine.
 	 *
 	 * @return the array list of slots
 	 */
@@ -129,7 +130,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method gets which bill is referred to
+	 * This method gets which bill is referred to.
 	 *
 	 * @param index the index used to refer to the denomination
 	 * @return the denomination at which the index is referring to
@@ -141,7 +142,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method refers to the view vending class which is responsible for the printing of various texts for the vending machine when buying or testing the vending machines features
+	 * This method refers to the view vending class which is responsible for the printing of various texts for the vending machine when buying or testing the vending machines features.
 	 *
 	 */
 	@Override
@@ -151,7 +152,7 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 *This method prints the report to on the sales and stocks depending on the last restocking
+	 *This method prints the report to on the sales and stocks depending on the last restocking.
 	 */
 	@Override
 	public void printReport(){vendingView.printReport(vendingModel.getSlots());}

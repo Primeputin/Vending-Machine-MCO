@@ -2,10 +2,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
- * This represents a vendong model of the vending machine.
+ * This represents a vending model of the vending machine.
  * It contains an arraylist of the Slot class
  * it also contains an array of integers DENOMINATION as the values of the bills
- * it also contains an array of integers avaiable changes as the number of bills for each denomination the vending machine has
+ * it also contains an array of integers available changes as the number of bills for each denomination the vending machine has
  *
  * @author Vladimir Tang
  *
@@ -18,7 +18,7 @@ public class VendingModel {
 	private int[] availableChanges = new int[7]; // by default all the values here are zero
 
 	/**
-	 * Is a constructor method meant to instantiate 8 different items for when the vending machine is created
+	 * Is a constructor method meant to instantiate 8 different items for when the vending machine is created.
 	 *
 	 * @param item1 refers to the first item to be placed in the vending machine
 	 * @param item2 refers to the second item to be placed in the vending machine
@@ -53,7 +53,7 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method adds a new item that is placed in a new slot in the vending machine
+	 * This method adds a new item that is placed in a new slot in the vending machine.
 	 *
 	 * @param item refers to the Item class which holds the contents of an item to be placed in a vending machine
 	 */
@@ -63,7 +63,7 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method resets all the items in every slot
+	 * This method resets all the items in every slot.
 	 */
 	public void resetSlots()
 	{
@@ -74,9 +74,9 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method performs the enter cash action where the user can enter the desired amount of cash to be used to buy
+	 * This method performs the enter cash action where the user can enter the desired amount of cash to be used to buy.
 	 *
-	 * @param input is the integer input of the user
+	 * @param input refers to the object that will take the input of the user in the terminal
 	 * @return the total amount inserted
 	 */
 	public int enterCash(Scanner input)
@@ -122,7 +122,8 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method uses the money given and the price of the item to return the change of the customer
+	 * This method uses the money given and the price of the item to return the change of the customer.
+	 *
 	 * @param amount is the amount that the customer placed in the vending machine
 	 * @param cost cost of the item being bought
 	 * @return the change with respect to the machines ability to give change
@@ -165,7 +166,9 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method sets the available changes for the denominations
+	 * This method sets the available changes for the denominations.
+	 * refers to the object that will take the input of the user in the terminal.
+	 *
 	 * @param availableChanges
 	 */
 	public void setAvailableChanges(int[] availableChanges)
@@ -174,7 +177,8 @@ public class VendingModel {
 	}
 
 	/**
-	 * Sets the available change to the specific denomination
+	 * Sets the available change to the specific denomination.
+	 *
 	 * @param quantity refers to how much of the denomination is to be added
 	 * @param index refers to the index of which denomination
 	 */
@@ -184,7 +188,8 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method gets the available change of every denomination
+	 * This method gets the available change of every denomination.
+	 *
 	 * @return an array of integers referring to the quantity of the denomination
 	 */
 	public int[] getAvailableChanges()
@@ -193,9 +198,10 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method gets the available change with respect to which denomnination
+	 * This method gets the available change with respect to which denomnination.
+	 *
 	 * @param index refers to the index that points to a specific denomination
-	 * @return an in at the quantity of the said denomination
+	 * @return an int at the quantity of the said denomination
 	 */
 	public int getAvailableChange(int index)
 	{
@@ -203,7 +209,7 @@ public class VendingModel {
 	}
 
 	/**
-	 * This methodc gets teh slots of a vending machine
+	 * This method gets teh slots of a vending machine.
 	 *
 	 * @return an arraylist of the slots in the vending machine
 	 */
@@ -213,7 +219,8 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method gets which denomination it is refering to based on the index provided
+	 * This method gets which denomination it is refering to based on the index provided.
+	 *
 	 * @param index refers the which denomination is pointing at
 	 * @return an int to the value of the denomination based on the index
 	 */
