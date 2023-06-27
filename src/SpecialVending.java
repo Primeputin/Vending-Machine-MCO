@@ -143,7 +143,6 @@ public class SpecialVending extends AbstractVending{
 
     /**
      * This method refers to the view vending class which is responsible for the printing of various texts for the vending machine when buying or testing the vending machines features.
-     *
      */
     @Override
     public void viewVendingMachine()
@@ -193,5 +192,14 @@ public class SpecialVending extends AbstractVending{
     {
         specialVendingView.makingBurgerProcess(specialVendingModel.getBurger());
     }
+
+    /**
+     * Show the details of a customized item.
+     */
+    public void displayCustomized()
+    {
+        specialVendingView.displayCustomized(specialVendingModel.getBurger());
+    }
+
 
 }

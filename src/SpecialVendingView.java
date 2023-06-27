@@ -57,5 +57,18 @@ public class SpecialVendingView extends VendingView{
 
     }
 
+    /**
+     * Show the details of a customized item.
+     *
+     * @param burger is the customized object
+     */
+    public void displayCustomized(Customized burger)
+    {
+        System.out.println("Customized item:" + Customized.name);
+        System.out.println("Price: Php " + burger.getPrice());
+        System.out.println("Calories: " + burger.getCalories());
+    }
+
+
 
 }

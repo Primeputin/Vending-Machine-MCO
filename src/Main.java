@@ -442,10 +442,10 @@ public class Main {
 			slotIndex = input.nextInt();
 			vendingSelection(slotIndex, amount, vendingMachine);
 
+			input.nextLine();
 			do
 			{
 				System.out.print("Would like to continue [y/n]? ");
-				input.nextLine();
 				exitornot = input.nextLine();
 			}while(exitornot.compareToIgnoreCase("y") != 0 && exitornot.compareToIgnoreCase("n") != 0);
 			
@@ -475,9 +475,10 @@ public class Main {
 		boolean exit = false;
 		boolean bunprocess;
 		boolean meatprocess;
-		boolean process;
-		boolean done;
+		boolean process = false;
+		boolean done = false;
 		String exitornot;
+		String payornot;
 		while (!exit)
 		{
 			specialVendingMachine.viewVendingMachine();
@@ -603,22 +604,36 @@ public class Main {
 					}
 					else
 					{
-						change = specialVendingMachine.change(amount, specialVendingMachine.getBurger().getPrice());
-						if (amount < specialVendingMachine.getBurger().getPrice())
+						specialVendingMachine.displayCustomized();
+
+						input.nextLine();
+						do
 						{
-							System.out.println("Not enough cash.");
-							System.out.println("Your change is " + amount);
-						}
-						else if(change == -1)
+
+							System.out.print("Would like to continue in paying[y/n]? ");
+							payornot = input.nextLine();
+						}while(payornot.compareToIgnoreCase("y") != 0 && payornot.compareToIgnoreCase("n") != 0);
+
+						if (payornot.compareToIgnoreCase("y") == 0)
 						{
-							System.out.println("Sorry, transaction cannot be made due to insufficient available change");
-							System.out.println("Your change is " + amount);
+							change = specialVendingMachine.change(amount, specialVendingMachine.getBurger().getPrice());
+							if (amount < specialVendingMachine.getBurger().getPrice())
+							{
+								System.out.println("Not enough cash.");
+								System.out.println("Your change is " + amount);
+							}
+							else if(change == -1)
+							{
+								System.out.println("Sorry, transaction cannot be made due to insufficient available change");
+								System.out.println("Your change is " + amount);
+							}
+							else
+							{
+								specialVendingMachine.makingBurgerProcess();
+								System.out.println("Your change is " + change);
+							}
 						}
-						else
-						{
-							specialVendingMachine.makingBurgerProcess();
-							System.out.println("Your change is " + change);
-						}
+
 					}
 
 					specialVendingMachine.setBurger(null); // technically delete the object
@@ -635,10 +650,13 @@ public class Main {
 				System.out.println("Your change is " + amount);
 			}
 
+			if (!process && !done)
+			{
+				input.nextLine();
+			}
 			do
 			{
 				System.out.print("Would like to continue [y/n]? ");
-				input.nextLine();
 				exitornot = input.nextLine();
 			}while(exitornot.compareToIgnoreCase("y") != 0 && exitornot.compareToIgnoreCase("n") != 0);
 
