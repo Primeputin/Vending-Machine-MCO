@@ -70,6 +70,7 @@ public class VendingModel {
 		for (Slot slot: slots)
 		{
 			slot.resetItems();
+			slot.setSale(0);
 		}
 	}
 

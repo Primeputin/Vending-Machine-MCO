@@ -33,7 +33,6 @@ public class Main {
 				System.out.println("2 - Exit");
 				
 				choice = input.nextInt();
-				
 				switch(choice)
 				{
 					case 0:
