@@ -11,7 +11,7 @@ import java.util.Stack;
  */
 public class Customized{
 
-	public static final String name = "Burger";
+	public static final String NAME = "Burger";
 	private int price = 0;
 	private int calories = 0;
 	private Item bun;
