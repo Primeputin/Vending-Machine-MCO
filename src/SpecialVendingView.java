@@ -64,7 +64,7 @@ public class SpecialVendingView extends VendingView{
      */
     public void displayCustomized(Customized burger)
     {
-        System.out.println("Customized item:" + Customized.name);
+        System.out.println("Customized item:" + Customized.NAME);
         System.out.println("Price: Php " + burger.getPrice());
         System.out.println("Calories: " + burger.getCalories());
     }
