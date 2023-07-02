@@ -6,6 +6,13 @@ import java.util.ArrayList;
  * @author Vladimir Tang
  */
 public class SpecialVendingView extends VendingView{
+
+    public SpecialVendingView(String name)
+    {
+        super(name);
+    }
+
+
     /**
      * Displays the interface for when you are inserting cash or buying from a special vending machine.
      * This includes the showing of the customized burger.

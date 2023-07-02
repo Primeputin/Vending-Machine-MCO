@@ -20,62 +20,65 @@ public class Main {
 		Item onion = new Item("Onion", 30, 17, false, 0);
 		Item fishfillet = new Item("Fish fillet", 207, 172, true, 2);
 
-		Vending vendingMachine = new Vending(new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new VendingView());
-		SpecialVending specialVendingMachine = new SpecialVending(new SpecialVendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new SpecialVendingView());
+		Vending vendingMachine = new Vending(new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new VendingView("Regular vending machine"));
+		SpecialVending specialVendingMachine = new SpecialVending(new SpecialVendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new SpecialVendingView("Special vending machine"));
 
-		try
-		{
-			while (!exit)
-			{
-				System.out.println("Main Menu: ");
-				System.out.println("0 - Create a vending machine");
-				System.out.println("1 - Test a vending machine");
-				System.out.println("2 - Exit");
-				
-				choice = input.nextInt();
-				switch(choice)
-				{
-					case 0:
-						which = chooseVendingMachine(input, vendingMachine, specialVendingMachine);
-						if (which == 0)
-						{
-							created = true;
-							specialcreated = false;
-						}
-						else
-						{
-							specialcreated = true;
-							created = false;
-						}
-						break;
-					case 1:
-						if (created)
-						{
-							testingVendingMachine(input, vendingMachine);
-						}
-						else if (specialcreated)
-						{
-							testingVendingMachine(input, specialVendingMachine);
-						}
-						else
-						{
-							System.out.println("No vending machine has been created");
-						}
-						break;
-					case 2: 
-						exit = true;
-						break;
-					default:
-						System.out.println("Try another value!!!");
-				}
-				
-			}
-		}
-		catch (InputMismatchException e)
-		{
-			System.out.println("Input error");
-			e.printStackTrace();
-		}
+		MainModel mainModel = new MainModel(vendingMachine, specialVendingMachine);
+		MainView mainView = new MainView("Main menu");
+		MainController mainController = new MainController(mainModel, mainView);
+//		try
+//		{
+//			while (!exit)
+//			{
+//				System.out.println("Main Menu: ");
+//				System.out.println("0 - Create a vending machine");
+//				System.out.println("1 - Test a vending machine");
+//				System.out.println("2 - Exit");
+//
+//				choice = input.nextInt();
+//				switch(choice)
+//				{
+//					case 0:
+//						which = chooseVendingMachine(input, vendingMachine, specialVendingMachine);
+//						if (which == 0)
+//						{
+//							created = true;
+//							specialcreated = false;
+//						}
+//						else
+//						{
+//							specialcreated = true;
+//							created = false;
+//						}
+//						break;
+//					case 1:
+//						if (created)
+//						{
+//							testingVendingMachine(input, vendingMachine);
+//						}
+//						else if (specialcreated)
+//						{
+//							testingVendingMachine(input, specialVendingMachine);
+//						}
+//						else
+//						{
+//							System.out.println("No vending machine has been created");
+//						}
+//						break;
+//					case 2:
+//						exit = true;
+//						break;
+//					default:
+//						System.out.println("Try another value!!!");
+//				}
+//
+//			}
+//		}
+//		catch (InputMismatchException e)
+//		{
+//			System.out.println("Input error");
+//			e.printStackTrace();
+//		}
 		
 		input.close();
 	}

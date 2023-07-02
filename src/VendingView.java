@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -5,7 +7,17 @@ import java.util.ArrayList;
  *
  * @author Vladimir Tang
  */
-public class VendingView {
+public class VendingView extends JFrame {
+
+
+	public VendingView(String name)
+	{
+		this.setTitle("Regular vending machine");
+		this.setTitle(name);
+		this.setLayout(new FlowLayout());
+	}
+
+
 	/**
 	 * Displays the interface for when you are inserting cash or buying from a vending machine.
 	 *
