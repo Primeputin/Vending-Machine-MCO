@@ -16,6 +16,7 @@ public class VendingModel {
 	// one, five, ten, twenty, fifty, one hundred, five hundred php
 	private final int[] DENOMINATION = {1, 5, 10, 20, 50, 100, 500};
 	private int[] availableChanges = new int[7]; // by default all the values here are zero
+	private int cashEntered;
 
 	/**
 	 * Is a constructor method meant to instantiate 8 different items for when the vending machine is created.
@@ -31,6 +32,7 @@ public class VendingModel {
 	 */
 	public VendingModel(Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8)
 	{
+		resetCashEntered();
 		addSlots(item1);
 		addSlots(item2);
 		addSlots(item3);
@@ -166,6 +168,49 @@ public class VendingModel {
 		return change;
 	}
 
+	public int change(int cost)
+	{
+		int change = cashEntered - cost;
+		int[] minusAvailable = new int[7];
+
+		for (int i = availableChanges.length - 1; i >= 1; i--)
+		{
+			if (change / DENOMINATION[i] <= availableChanges[i] && availableChanges[i] != 0)
+			{
+				minusAvailable[i] = change / DENOMINATION[i];
+				change %= DENOMINATION[i];
+			}
+		}
+
+		// for the 1 php
+		if (change / DENOMINATION[0] <= availableChanges[0] && availableChanges[0] != 0)
+		{
+			minusAvailable[0] = change;
+			change = 0;
+		}
+
+		if (change != 0)
+		{
+			change = -1;
+		}
+		else
+		{
+			change = cashEntered - cost;
+			for (int i = 0; i < availableChanges.length; i++)
+			{
+				availableChanges[i] -= minusAvailable[i];
+			}
+
+		}
+		return change;
+	}
+
+	void resetCashEntered()
+	{
+		cashEntered = 0;
+	}
+
+
 	/**
 	 * This method sets the available changes for the denominations.
 	 * refers to the object that will take the input of the user in the terminal.
@@ -187,6 +232,12 @@ public class VendingModel {
 	{
 		availableChanges[index] = quantity;
 	}
+
+	public void increaseCashEntered(int amount)
+	{
+		cashEntered += amount;
+	}
+
 
 	/**
 	 * This method gets the available change of every denomination.
@@ -230,6 +281,9 @@ public class VendingModel {
 		return this.DENOMINATION[index];
 	}
 
-
+	public int getCashEntered()
+	{
+		return cashEntered;
+	}
 
 }

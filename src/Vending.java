@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -26,6 +29,9 @@ public class Vending extends AbstractVending{
 	{
 		this.vendingModel = vendingModel;
 		this.vendingView = vendingView;
+
+		addDENOMINATIONlistener();
+
 	}
 
 	/**
@@ -96,6 +102,11 @@ public class Vending extends AbstractVending{
 		vendingModel.setAvailableChange(quantity, index);
 	}
 
+	public void setVendingItemsEnabled(boolean enabled)
+	{
+		vendingView.setVendingItemsEnabled(enabled);
+	}
+
 	/**
 	 * This method returns the array for the available change.
 	 *
@@ -155,4 +166,139 @@ public class Vending extends AbstractVending{
 	 */
 	@Override
 	public void printReport(){vendingView.printReport(vendingModel.getSlots());}
+
+	@Override
+	public void setDisplay(boolean show)
+	{
+		vendingView.setVisible(show);
+	}
+
+	@Override
+	public void addViewingSlot()
+	{
+		for (Slot i: vendingModel.getSlots())
+		{
+			vendingView.addViewingSlot(i.getName(), i.getPrice(), i.getCalories(), i.getIndividual(), i.getAvailability());
+
+		}
+	}
+
+	@Override
+	public void addMainSourceFrame(MainView mainSourceFrame)
+	{
+		vendingView.addMainSourceFrame(mainSourceFrame);
+	}
+
+	@Override
+	public void addDENOMINATIONlistener()
+	{
+		vendingView.addDENOMINATIONlistener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == vendingView.getOne())
+				{
+					vendingModel.increaseCashEntered(1);
+				}
+				else if (e.getSource() == vendingView.getFive())
+				{
+					vendingModel.increaseCashEntered(5);
+				}
+				else if (e.getSource() == vendingView.getTen())
+				{
+					vendingModel.increaseCashEntered(10);
+				}
+				else if (e.getSource() == vendingView.getTwenty())
+				{
+					vendingModel.increaseCashEntered(20);
+				}
+				else if (e.getSource() == vendingView.getFifty())
+				{
+					vendingModel.increaseCashEntered(50);
+				}
+				else if (e.getSource() == vendingView.getOnehundred())
+				{
+					vendingModel.increaseCashEntered(100);
+				}
+				else if (e.getSource() == vendingView.getFivehundred())
+				{
+					vendingModel.increaseCashEntered(500);
+				}
+				else if(e.getSource() == vendingView.getDone())
+				{
+					vendingView.setVendingItemsEnabledForRegularVendingMachine(vendingModel.getSlots());
+					vendingView.setNumpadsEnabled(false);
+				}
+				else if (e.getSource() == vendingView.getExit())
+				{
+					JOptionPane.showMessageDialog(null, "Your change is Php " + vendingModel.getCashEntered());
+					vendingModel.resetCashEntered();
+					vendingView.setNumpadsEnabled(true);
+					vendingView.setVendingItemsEnabled(false);
+				}
+				vendingView.getCashEntered().setText("Total cash entered: Php " + vendingModel.getCashEntered());
+
+			}
+		});
+	}
+
+	public void addVendingItemsButtonsListener()
+	{
+		vendingView.addVendingItemsButtonsListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (Slot i: vendingModel.getSlots())
+				{
+					if (e.getActionCommand().equals(i.getName()))
+					{
+						vendingTransaction(i);
+					}
+				}
+				vendingView.setNumpadsEnabled(true);
+				vendingView.setVendingItemsEnabled(false);
+				updateVendingItemsView();
+			}
+		});
+	}
+
+	public void vendingTransaction(Slot slot)
+	{
+		int change;
+
+		change = vendingModel.change(slot.getPrice());
+
+		if (vendingModel.getCashEntered() < slot.getPrice())
+		{
+			JOptionPane.showMessageDialog(null, "<html>Not enough cash<br>Your change is Php" + vendingModel.getCashEntered() + "</html>");
+		}
+		else if(change == -1)
+		{
+			JOptionPane.showMessageDialog(null, "<html>Sorry, transaction cannot be made due to insufficient available change<br>Your change is Php" + vendingModel.getCashEntered() + "</html>");
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null, "Your change is Php " + change);
+			slot.destroyItem();
+		}
+
+		vendingModel.resetCashEntered();
+
+	}
+
+	@Override
+	public void updateVendingItemsView()
+	{
+		vendingView.updateVendingItemsView(vendingModel.getSlots());
+	}
+
+
+	@Override
+	public void defaultSettingsView()
+	{
+		vendingView.setNumpadsEnabled(true);
+		vendingView.setVendingItemsEnabled(false);
+		vendingModel.resetCashEntered();
+		vendingView.getCashEntered().setText("Total cash entered: Php " + vendingModel.getCashEntered());
+
+	}
+
 }

@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,6 +10,18 @@ public class MainController {
     {
         this.mainModel = mainModel;
         this.mainView = mainView;
+        this.mainModel.getVendingMachine().addMainSourceFrame(mainView);
+        this.mainModel.getSpecialVendingMachine().addMainSourceFrame(mainView);
+
+        mainModel.getVendingMachine().addViewingSlot();
+        mainModel.getSpecialVendingMachine().addViewingSlot();
+        mainModel.getVendingMachine().setVendingItemsEnabled(false);
+        mainModel.getSpecialVendingMachine().setVendingItemsEnabled(false);
+        mainModel.getVendingMachine().addVendingItemsButtonsListener();
+        mainModel.getSpecialVendingMachine().addVendingItemsButtonsListener();
+
+
+
         addCreateListener();
         addTestingListener();
         addChoiceListener();
@@ -38,11 +49,17 @@ public class MainController {
             public void actionPerformed(ActionEvent e) {
                 if (mainModel.getVendingChoice() == 1) // regular vending machine chosen
                 {
-                    mainModel.getVendingMachine().viewVendingMachine();
+                    mainView.setVisible(false);
+                    mainModel.getVendingMachine().defaultSettingsView();
+                    mainModel.getVendingMachine().updateVendingItemsView();
+                    mainModel.getVendingMachine().setDisplay(true);
                 }
                 else if (mainModel.getVendingChoice() == 2) // special vending machine chosen
                 {
-                    mainModel.getSpecialVendingMachine().viewVendingMachine();;
+                    mainView.setVisible(false);
+                    mainModel.getSpecialVendingMachine().defaultSettingsView();
+                    mainModel.getSpecialVendingMachine().updateVendingItemsView();
+                    mainModel.getSpecialVendingMachine().setDisplay(true);
                 }
             }
         });
@@ -57,6 +74,7 @@ public class MainController {
                 {
                     mainModel.initializeRegularVending();
                     mainModel.regularExist();
+
                 }
                 else if (e.getActionCommand().equals("Special vending machine"))
                 {

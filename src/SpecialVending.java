@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,6 +28,8 @@ public class SpecialVending extends AbstractVending{
     {
         this.specialVendingModel = specialVendingModel;
         this.specialVendingView = specialVendingView;
+
+        addDENOMINATIONlistener();
     }
 
     /**
@@ -118,6 +123,11 @@ public class SpecialVending extends AbstractVending{
         return specialVendingModel.getAvailableChange(index);
     }
 
+    public void setVendingItemsEnabled(boolean enabled)
+    {
+        specialVendingView.setVendingItemsEnabled(enabled);
+    }
+
     /**
      * This method returns the slots of the vending machine.
      *
@@ -201,5 +211,139 @@ public class SpecialVending extends AbstractVending{
         specialVendingView.displayCustomized(specialVendingModel.getBurger());
     }
 
+    @Override
+    public void setDisplay(boolean show)
+    {
+        specialVendingView.setVisible(show);
 
+    }
+
+    @Override
+    public void addViewingSlot()
+    {
+        for (Slot i: specialVendingModel.getSlots())
+        {
+            specialVendingView.addViewingSlot(i.getName(), i.getPrice(), i.getCalories(), i.getIndividual(), i.getAvailability());
+
+        }
+    }
+
+    @Override
+    public void addMainSourceFrame(MainView mainSourceFrame)
+    {
+        specialVendingView.addMainSourceFrame(mainSourceFrame);
+    }
+
+    @Override
+    public void addDENOMINATIONlistener()
+    {
+        specialVendingView.addDENOMINATIONlistener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == specialVendingView.getOne())
+                {
+                    specialVendingModel.increaseCashEntered(1);
+                }
+                else if (e.getSource() == specialVendingView.getFive())
+                {
+                    specialVendingModel.increaseCashEntered(5);
+                }
+                else if (e.getSource() == specialVendingView.getTen())
+                {
+                    specialVendingModel.increaseCashEntered(10);
+                }
+                else if (e.getSource() == specialVendingView.getTwenty())
+                {
+                    specialVendingModel.increaseCashEntered(20);
+                }
+                else if (e.getSource() == specialVendingView.getFifty())
+                {
+                    specialVendingModel.increaseCashEntered(50);
+                }
+                else if (e.getSource() == specialVendingView.getOnehundred())
+                {
+                    specialVendingModel.increaseCashEntered(100);
+                }
+                else if (e.getSource() == specialVendingView.getFivehundred())
+                {
+                    specialVendingModel.increaseCashEntered(500);
+                }
+                else if(e.getSource() == specialVendingView.getDone())
+                {
+                    specialVendingView.setVendingItemsEnabledForRegularVendingMachine(specialVendingModel.getSlots());
+                    specialVendingView.setNumpadsEnabled(false);
+                }
+                else if (e.getSource() == specialVendingView.getExit())
+                {
+                    JOptionPane.showMessageDialog(null, "Your change is Php " + specialVendingModel.getCashEntered());
+                    specialVendingModel.resetCashEntered();
+                    specialVendingView.setNumpadsEnabled(true);
+                    specialVendingView.setVendingItemsEnabled(false);
+                }
+                specialVendingView.getCashEntered().setText("Total cash entered: Php " + specialVendingModel.getCashEntered());
+
+            }
+        });
+    }
+
+    @Override
+    public void addVendingItemsButtonsListener()
+    {
+        specialVendingView.addVendingItemsButtonsListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Slot i: specialVendingModel.getSlots())
+                {
+                    if (e.getActionCommand().equals(i.getName()))
+                    {
+                        vendingTransaction(i);
+                    }
+                }
+                specialVendingView.setNumpadsEnabled(true);
+                specialVendingView.setVendingItemsEnabled(false);
+                updateVendingItemsView();
+            }
+        });
+
+    }
+
+    @Override
+    public void vendingTransaction(Slot slot)
+    {
+        int change;
+
+        change = specialVendingModel.change(slot.getPrice());
+
+        if (specialVendingModel.getCashEntered() < slot.getPrice())
+        {
+            JOptionPane.showMessageDialog(null, "<html>Not enough cash<br>Your change is Php" + specialVendingModel.getCashEntered() + "</html>");
+        }
+        else if(change == -1)
+        {
+            JOptionPane.showMessageDialog(null, "<html>Sorry, transaction cannot be made due to insufficient available change<br>Your change is Php" + specialVendingModel.getCashEntered() + "</html>");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Your change is Php " + change);
+            slot.destroyItem();
+        }
+
+        specialVendingModel.resetCashEntered();
+
+    }
+
+    @Override
+    public void updateVendingItemsView()
+    {
+        specialVendingView.updateVendingItemsView(specialVendingModel.getSlots());
+    }
+
+    @Override
+    public void defaultSettingsView()
+    {
+        specialVendingView.setNumpadsEnabled(true);
+        specialVendingView.setVendingItemsEnabled(false);
+        specialVendingModel.resetCashEntered();
+        specialVendingView.getCashEntered().setText("Total cash entered: Php " + specialVendingModel.getCashEntered());
+    }
 }

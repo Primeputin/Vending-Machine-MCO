@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
@@ -9,14 +12,176 @@ import java.util.ArrayList;
  */
 public class VendingView extends JFrame {
 
-
+	MainView mainSourceFrame;
+	JPanel vendingItems;
+    JPanel numpads;
+	JPanel rightSide;
+	JLabel cashEntered;
+	JLabel entry;
+	JButton one;
+	JButton five;
+	JButton ten;
+	JButton twenty;
+	JButton fifty;
+	JButton onehundred;
+	JButton fivehundred;
+	JButton done;
+	JButton exit;
 	public VendingView(String name)
+	{
+		init(name);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (mainSourceFrame != null)
+				{
+					mainSourceFrame.setVisible(true);
+				}
+				super.windowClosing(e);
+			}
+		});
+	}
+
+	public void addMainSourceFrame(MainView mainSourceFrame)
+	{
+		this.mainSourceFrame = mainSourceFrame;
+	}
+
+
+	public void init(String name)
 	{
 		this.setTitle("Regular vending machine");
 		this.setTitle(name);
-		this.setLayout(new FlowLayout());
+		this.setLayout(new BorderLayout());
+		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+
+		vendingItems = new JPanel(new GridLayout(4, 4));
+
+		rightSide = new JPanel(new BorderLayout());
+		cashEntered = new JLabel("Total cash entered: Php 0.00");
+
+		numpads = new JPanel();
+		numpads.setLayout(new GridLayout(3, 3));
+
+		one = new JButton("Php 1");
+		five = new JButton("Php 5");
+		ten = new JButton("Php 10");
+		twenty = new JButton("Php 20");
+		fifty = new JButton("Php 50");
+		onehundred = new JButton("Php 100");
+		fivehundred = new JButton("Php 500");
+		done = new JButton("Done");
+		exit = new JButton("X");
+
+		numpads.add(one);
+		numpads.add(five);
+		numpads.add(ten);
+		numpads.add(twenty);
+		numpads.add(fifty);
+		numpads.add(onehundred);
+		numpads.add(fivehundred);
+		numpads.add(done);
+		numpads.add(exit);
+
+		rightSide.add(cashEntered, BorderLayout.NORTH);
+		rightSide.add(numpads, BorderLayout.CENTER);
+
+		setVendingItemsEnabled(false);
+
+		entry = new JLabel("Burger in your area!!!");
+		entry.setFont(new Font("New Courier", Font.CENTER_BASELINE, 25));
+
+		this.add(vendingItems, BorderLayout.CENTER);
+		this.add(rightSide, BorderLayout.EAST);
+		this.add(entry, BorderLayout.SOUTH);
+		this.pack();
 	}
 
+
+	public void addViewingSlot(String name, int price, int calories, boolean individuality, int availability)
+	{
+		JPanel newJPanel = new JPanel();
+		newJPanel.setLayout(new GridLayout(5, 1));
+
+		newJPanel.add(new JLabel("Php" + price));
+		newJPanel.add(new JLabel(calories + " calories"));
+		newJPanel.add(new JLabel(individuality ? "Solo" : "Not Solo"));
+		newJPanel.add(new JLabel("x" + availability));
+		newJPanel.add(new JButton(name));
+		vendingItems.add(newJPanel);
+		this.pack();
+	}
+
+	public void addDENOMINATIONlistener(ActionListener listener)
+	{
+		one.addActionListener(listener);
+		five.addActionListener(listener);
+		ten.addActionListener(listener);
+		twenty.addActionListener(listener);
+		fifty.addActionListener(listener);
+		onehundred.addActionListener(listener);
+		fivehundred.addActionListener(listener);
+		done.addActionListener(listener);
+		exit.addActionListener(listener);
+	}
+
+	public void addVendingItemsButtonsListener(ActionListener listener)
+	{
+		JPanel panel;
+		for (Component i: vendingItems.getComponents())
+		{
+			if (i instanceof JPanel)
+			{
+				panel = (JPanel) i;
+				for (Component j: panel.getComponents())
+				{
+
+					if (j instanceof JButton)
+					{
+						((JButton) j).addActionListener(listener);
+					}
+				}
+			}
+		}
+	}
+
+	public void updateVendingItemsView(ArrayList <Slot> slot)
+	{
+		JPanel panel;
+		int slotIndex = 0;
+		Component[] components;
+		for (Component i: vendingItems.getComponents())
+		{
+			if (i instanceof JPanel)
+			{
+				panel = (JPanel) i;
+				components = panel.getComponents();
+				for (int j = 0; j < components.length - 1; j++) // excluding the JButton
+				{
+					if (components[j] instanceof JLabel)
+					{
+						if (j == 0)
+						{
+							((JLabel) components[j]).setText("Php " + slot.get(slotIndex).getPrice());
+						}
+						else if (j == 1)
+						{
+							((JLabel) components[j]).setText(slot.get(slotIndex).getCalories() + " calories");
+						}
+						else if (j == 2)
+						{
+							((JLabel) components[j]).setText(slot.get(slotIndex).getIndividual() ? "Solo" : "Not Solo");
+						}
+						else
+						{
+							((JLabel) components[j]).setText("x" + slot.get(slotIndex).getAvailability());
+						}
+					}
+				}
+				slotIndex++;
+			}
+		}
+	}
 
 	/**
 	 * Displays the interface for when you are inserting cash or buying from a vending machine.
@@ -153,6 +318,116 @@ public class VendingView extends JFrame {
 		System.out.println("==================================================================\n\n\n");
 
 	}
+
+	public void setNumpadsEnabled(boolean enabled)
+	{
+		Component[] components = numpads.getComponents();
+		int i;
+		for (i = 0; i < components.length - 1; i++)
+		{
+			components[i].setEnabled(enabled);
+		}
+		components[i].setEnabled(!enabled); // for the exit button
+
+	}
+
+	public void setVendingItemsEnabled(boolean enabled)
+	{
+		JPanel panel;
+		for (Component i: vendingItems.getComponents())
+		{
+			if (i instanceof JPanel)
+			{
+				panel = (JPanel) i;
+
+				for (Component j: panel.getComponents())
+				{
+					j.setEnabled(enabled);
+				}
+			}
+		}
+	}
+
+	public void setVendingItemsEnabledForRegularVendingMachine(ArrayList<Slot> slots)
+	{
+		JPanel panel;
+		int slotIndex = 0;
+		for (Component i: vendingItems.getComponents())
+		{
+			if (i instanceof JPanel)
+			{
+				panel = (JPanel) i;
+
+				for (Component j: panel.getComponents())
+				{
+					if (slots.get(slotIndex).getAvailability() > 0 && slots.get(slotIndex).getIndividual())
+					{
+						j.setEnabled(true);
+					}
+					else
+					{
+						j.setEnabled(false);
+					}
+
+				}
+				slotIndex++;
+			}
+		}
+
+	}
+
+
+	public JButton getOne()
+	{
+		return one;
+	}
+
+	public JButton getFive()
+	{
+		return five;
+	}
+
+	public JButton getTen()
+	{
+		return ten;
+	}
+
+	public JButton getTwenty()
+	{
+		return twenty;
+	}
+
+	public JButton getFifty()
+	{
+		return fifty;
+	}
+
+	public JButton getOnehundred()
+	{
+		return onehundred;
+	}
+
+	public JButton getFivehundred()
+	{
+		return fivehundred;
+	}
+
+	public JButton getDone()
+	{
+		return done;
+	}
+
+	public JButton getExit()
+	{
+		return exit;
+	}
+
+
+	public JLabel getCashEntered()
+	{
+		return cashEntered;
+	}
+
 
 }
 

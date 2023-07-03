@@ -79,5 +79,19 @@ public abstract class AbstractVending{
      */
     abstract void printReport();
 
+    abstract  void setDisplay(boolean show);
 
+    abstract void addViewingSlot();
+
+    abstract void addMainSourceFrame(MainView mainSourceFrame);
+
+    abstract void addDENOMINATIONlistener();
+
+    abstract void addVendingItemsButtonsListener();
+
+    abstract void vendingTransaction(Slot slot);
+
+    abstract void updateVendingItemsView();
+
+    abstract void defaultSettingsView();
 }

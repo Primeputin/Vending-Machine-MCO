@@ -20,11 +20,13 @@ public class Main {
 		Item onion = new Item("Onion", 30, 17, false, 0);
 		Item fishfillet = new Item("Fish fillet", 207, 172, true, 2);
 
+		MainView mainView;
+
 		Vending vendingMachine = new Vending(new VendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new VendingView("Regular vending machine"));
 		SpecialVending specialVendingMachine = new SpecialVending(new SpecialVendingModel(bun, tomato, chickenfillet, mozarella, patty, lettuce, onion, fishfillet), new SpecialVendingView("Special vending machine"));
 
 		MainModel mainModel = new MainModel(vendingMachine, specialVendingMachine);
-		MainView mainView = new MainView("Main menu");
+		mainView = new MainView("Main menu");
 		MainController mainController = new MainController(mainModel, mainView);
 //		try
 //		{
