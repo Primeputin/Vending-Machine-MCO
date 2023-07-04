@@ -93,7 +93,7 @@ public class VendingView extends JFrame {
 
 		this.add(vendingItems, BorderLayout.CENTER);
 		this.add(rightSide, BorderLayout.EAST);
-		this.add(entry, BorderLayout.SOUTH);
+		this.add(entry, BorderLayout.NORTH);
 		this.pack();
 	}
 
@@ -145,7 +145,7 @@ public class VendingView extends JFrame {
 		}
 	}
 
-	public void updateVendingItemsView(ArrayList <Slot> slot)
+	public void updateVendingItemsView(ArrayList <Slot> slots)
 	{
 		JPanel panel;
 		int slotIndex = 0;
@@ -162,19 +162,19 @@ public class VendingView extends JFrame {
 					{
 						if (j == 0)
 						{
-							((JLabel) components[j]).setText("Php " + slot.get(slotIndex).getPrice());
+							((JLabel) components[j]).setText("Php " + slots.get(slotIndex).getPrice());
 						}
 						else if (j == 1)
 						{
-							((JLabel) components[j]).setText(slot.get(slotIndex).getCalories() + " calories");
+							((JLabel) components[j]).setText(slots.get(slotIndex).getCalories() + " calories");
 						}
 						else if (j == 2)
 						{
-							((JLabel) components[j]).setText(slot.get(slotIndex).getIndividual() ? "Solo" : "Not Solo");
+							((JLabel) components[j]).setText(slots.get(slotIndex).getIndividual() ? "Solo" : "Not Solo");
 						}
 						else
 						{
-							((JLabel) components[j]).setText("x" + slot.get(slotIndex).getAvailability());
+							((JLabel) components[j]).setText("x" + slots.get(slotIndex).getAvailability());
 						}
 					}
 				}

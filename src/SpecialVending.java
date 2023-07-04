@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,6 +30,10 @@ public class SpecialVending extends AbstractVending{
         this.specialVendingView = specialVendingView;
 
         addDENOMINATIONlistener();
+        addCustomizedButtonListener();
+        addDoneCustomizingListener();
+        processDialogListener();
+        hiddenFrame();
     }
 
     /**
@@ -168,13 +172,10 @@ public class SpecialVending extends AbstractVending{
 
     /**
      * This method is for creating a burger.
-     *
-     * @param bun is the bun for the burger
-     * @param meat is the first main meat for the burger
      */
-    public void setUpCustomized(Item bun, Item meat)
+    public void setUpCustomized()
     {
-        specialVendingModel.setUpCustomized(bun, meat);
+        specialVendingModel.setUpCustomized();
     }
 
     /**
@@ -275,10 +276,16 @@ public class SpecialVending extends AbstractVending{
                 }
                 else if (e.getSource() == specialVendingView.getExit())
                 {
+                    if (!specialVendingView.getBurgerButton().isEnabled())
+                    {
+                        specialVendingModel.giveOutBurger();
+                        updateVendingItemsView();
+
+                    }
                     JOptionPane.showMessageDialog(null, "Your change is Php " + specialVendingModel.getCashEntered());
                     specialVendingModel.resetCashEntered();
-                    specialVendingView.setNumpadsEnabled(true);
-                    specialVendingView.setVendingItemsEnabled(false);
+                    defaultSettingsView();
+
                 }
                 specialVendingView.getCashEntered().setText("Total cash entered: Php " + specialVendingModel.getCashEntered());
 
@@ -296,12 +303,51 @@ public class SpecialVending extends AbstractVending{
                 {
                     if (e.getActionCommand().equals(i.getName()))
                     {
-                        vendingTransaction(i);
+                        if (!specialVendingView.getBurgerButton().isEnabled())
+                        {
+                            if (i.getType() == 1) // for buns
+                            {
+                                specialVendingView.setOnlyTypeEnabled(getSlots(), 2); // enabling meat buttons only
+                                specialVendingModel.setBun(i.getItems().getFirst());
+                                i.onHold();
+
+                            }
+                            else if (i.getType() == 2) // for meats
+                            {
+                                if (specialVendingModel.getBurger() != null) // if burger exists with the required components
+                                {
+                                    specialVendingModel.getBurger().addMeat(i.getItems().getFirst());
+                                    i.onHold();
+                                }
+                                else if (specialVendingModel.getBun() != null) // meaning bun already picked
+                                {
+                                    specialVendingModel.setMeat(i.getItems().getFirst());
+                                    i.onHold();
+
+                                    specialVendingModel.setUpCustomized();
+                                    specialVendingView.setExceptTypeEnabled(getSlots(), 1); // disabling only the buns button
+                                    specialVendingView.getDoneCustomized().setEnabled(true);
+                                }
+
+                            }
+                            else // for other items other than meats and buns
+                            {
+                                specialVendingModel.getBurger().addIngredient(i.getItems().getFirst());
+                                i.onHold();
+                            }
+                            updateSpecialVendingItemsView();
+
+                        }
+                        else
+                        {
+                            vendingTransaction(i);
+                            specialVendingView.setNumpadsEnabled(true);
+                            specialVendingView.setVendingItemsEnabled(false);
+                            updateVendingItemsView();
+                        }
                     }
                 }
-                specialVendingView.setNumpadsEnabled(true);
-                specialVendingView.setVendingItemsEnabled(false);
-                updateVendingItemsView();
+//
             }
         });
 
@@ -332,11 +378,73 @@ public class SpecialVending extends AbstractVending{
 
     }
 
+    public void vendingCustomizedTransaction()
+    {
+        int change;
+
+        change = specialVendingModel.change(specialVendingModel.getBurger().getPrice());
+
+        if (specialVendingModel.getCashEntered() < specialVendingModel.getBurger().getPrice())
+        {
+            JOptionPane.showMessageDialog(null, "<html>Not enough cash<br>Your change is Php" + specialVendingModel.getCashEntered() + "</html>");
+
+        }
+        else if(change == -1)
+        {
+            JOptionPane.showMessageDialog(null, "<html>Sorry, transaction cannot be made due to insufficient available change<br>Your change is Php" + specialVendingModel.getCashEntered() + "</html>");
+        }
+        else
+        {
+            specialVendingView.makingBurgerProcess(specialVendingModel.getBurger());
+            JOptionPane.showMessageDialog(null, "Your change is Php " + change);
+            for (Slot i: specialVendingModel.getSlots())
+            {
+                while (i.getTempAvailability() > 0)
+                {
+                    i.useAsIngredient();
+                }
+            }
+        }
+        specialVendingModel.giveOutBurger(); // delete the burger
+        specialVendingModel.resetCashEntered();
+
+    }
+
     @Override
     public void updateVendingItemsView()
     {
         specialVendingView.updateVendingItemsView(specialVendingModel.getSlots());
     }
+
+    public void updateSpecialVendingItemsView()
+    {
+        int index = 0;
+        if (specialVendingModel.getBurger() == null)
+        {
+            specialVendingView.updateVendingItemsView(getSlots());
+            for (Component i: specialVendingView.getCustomizedDetails().getComponents())
+            {
+                if (i instanceof  JLabel)
+                {
+                    if (index == 0) // price
+                    {
+                        ((JLabel) i).setText("Php " + specialVendingModel.getBun().getPrice());
+
+                    }
+                    else if (index == 1) // calories
+                    {
+                        ((JLabel) i).setText(specialVendingModel.getBun().getCalories() + " calories");
+                    }
+                    index++;
+                }
+            }
+        }
+        else
+        {
+            specialVendingView.updateSpecialVendingItemsView(specialVendingModel.getSlots(), specialVendingModel.getBurger());
+        }
+    }
+
 
     @Override
     public void defaultSettingsView()
@@ -345,5 +453,56 @@ public class SpecialVending extends AbstractVending{
         specialVendingView.setVendingItemsEnabled(false);
         specialVendingModel.resetCashEntered();
         specialVendingView.getCashEntered().setText("Total cash entered: Php " + specialVendingModel.getCashEntered());
+        specialVendingView.defaultCustomizedDetails();
     }
+
+    public void addCustomizedButtonListener()
+    {
+        specialVendingView.addCustomizedButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                specialVendingView.getBurgerButton().setEnabled(false);
+                specialVendingView.setOnlyTypeEnabled(getSlots(), 1); // enable only the bun
+            }
+        });
+    }
+
+    public void addDoneCustomizingListener()
+    {
+        specialVendingView.addDoneCustomizingListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (specialVendingModel.getBurger() != null)
+                {
+                    vendingCustomizedTransaction();
+                }
+                defaultSettingsView();
+                updateVendingItemsView();
+            }
+        });
+    }
+
+    public void processDialogListener()
+    {
+        specialVendingView.processDialogListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                super.componentHidden(e);
+                specialVendingView.setVisible(true);
+            }
+        });
+    }
+
+    public void hiddenFrame()
+    {
+        specialVendingView.hiddenFrame(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                super.componentHidden(e);
+                specialVendingModel.giveOutBurger();
+            }
+        });
+    }
+
 }

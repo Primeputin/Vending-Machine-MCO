@@ -13,6 +13,7 @@ import java.util.LinkedList;
  */
 public class Slot extends Item{
 	private int availability;
+	private int tempAvailability;
 	private int sold;
 	private int sale;
 	private LinkedList<Item> items;
@@ -78,6 +79,7 @@ public class Slot extends Item{
 	
 	/**
 	 * Remove the first Item in the linked list and reduce the availability by one.
+	 * This should only be used for buying single items. Not as ingredients.
 	 */
 	public void destroyItem()
 	{
@@ -87,14 +89,34 @@ public class Slot extends Item{
 		availability -= 1;
 	}
 
+	public void onHold()
+	{
+		availability-=1;
+		tempAvailability+=1;
+	}
+
+	public void useAsIngredient()
+	{
+		items.removeFirst();
+		sold += 1;
+		tempAvailability-=1;
+	}
+
+	public void returnToOriginalAvailability()
+	{
+		availability += tempAvailability;
+		tempAvailability = 0;
+	}
+
 	/**
-	 * Clear all items in the slot, set sold and availability back to zero.
+	 * Clear all items in the slot, set sold, availability, tempAvailability back to zero.
 	 */
 	public void resetItems()
 	{
 		items.clear();
 		sold = 0;
 		availability = 0;
+		tempAvailability = 0;
 	}
 
 	
@@ -143,6 +165,11 @@ public class Slot extends Item{
 	public int getAvailability()
 	{
 		return availability;
+	}
+
+	public int getTempAvailability()
+	{
+		return tempAvailability;
 	}
 	
 	/**

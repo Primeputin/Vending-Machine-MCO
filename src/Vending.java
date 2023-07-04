@@ -241,6 +241,7 @@ public class Vending extends AbstractVending{
 		});
 	}
 
+	@Override
 	public void addVendingItemsButtonsListener()
 	{
 		vendingView.addVendingItemsButtonsListener(new ActionListener() {
@@ -260,6 +261,7 @@ public class Vending extends AbstractVending{
 		});
 	}
 
+	@Override
 	public void vendingTransaction(Slot slot)
 	{
 		int change;
