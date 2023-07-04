@@ -95,6 +95,7 @@ public class VendingView extends JFrame {
 		this.add(rightSide, BorderLayout.EAST);
 		this.add(entry, BorderLayout.NORTH);
 		this.pack();
+		this.setLocationRelativeTo(null);
 	}
 
 

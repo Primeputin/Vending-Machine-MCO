@@ -17,6 +17,7 @@ public class MainView extends JFrame {
         this.setSize(350, 300);
         this.setLayout(new FlowLayout());
         this.getContentPane().setBackground(new Color(175, 170, 170));
+        this.setLocationRelativeTo(null);
 
         main.setLayout(new BorderLayout());
         main.setSize(200, 200);
@@ -36,7 +37,11 @@ public class MainView extends JFrame {
 
         choose.setLayout(new BorderLayout());
         regularChoice.setText("Regular vending machine");
+        regularChoice.setFont(new Font("Courier", Font.PLAIN, 15));
+        regularChoice.setMargin(new Insets(10, 25, 10, 25));
         specialChoice.setText("Special vending machine");
+        specialChoice.setMargin(new Insets(10, 25, 10, 25));
+        specialChoice.setFont(new Font("Courier", Font.PLAIN, 15));
         choose.add(regularChoice, BorderLayout.NORTH);
         choose.add(specialChoice, BorderLayout.SOUTH);
 
