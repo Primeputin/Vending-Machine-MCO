@@ -7,8 +7,8 @@
 public class SpecialVendingModel extends VendingModel{
 
     private Customized burger;
-    private Item bun;
-    private Item meat;
+    private Item bun; // bun here is temporary for the burger
+    private Item meat; // meat here is temporary for the burger
 
     /**
      * Is a constructor method meant to instantiate 8 different items for when the vending machine is created.
@@ -35,6 +35,9 @@ public class SpecialVendingModel extends VendingModel{
         burger = new Customized(this.bun, this.meat);
     }
 
+    /**
+     * This method is for giving a burger out
+     */
     public void giveOutBurger()
     {
         for (Slot i: getSlots())
@@ -60,11 +63,21 @@ public class SpecialVendingModel extends VendingModel{
         return burger;
     }
 
+    /**
+     * Returns the main bun.
+     *
+     * @return the bun
+     */
     public Item getBun()
     {
         return bun;
     }
 
+    /**
+     * Returns the main meat.
+     *
+     * @return the main meat
+     */
     public Item getMeat()
     {
         return meat;
@@ -79,11 +92,21 @@ public class SpecialVendingModel extends VendingModel{
         this.burger = burger;
     }
 
+    /**
+     * Sets the bun.
+     *
+     * @param bun is the bun attribute
+     */
     public void setBun(Item bun)
     {
         this.bun = bun;
     }
 
+    /**
+     * Sets the main meat.
+     *
+     * @param meat is the main meat.
+     */
     public void setMeat(Item meat)
     {
         this.meat = meat;

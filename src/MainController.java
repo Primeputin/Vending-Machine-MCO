@@ -1,11 +1,22 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class is for controlling the main model and main view component.
+ *
+ * @author Vladimir Tang
+ */
 public class MainController {
 
     private MainModel mainModel;
     private MainView mainView;
 
+    /**
+     * Constructor for this class.
+     *
+     * @param mainModel is the model component
+     * @param mainView is the view component
+     */
     public MainController(MainModel mainModel, MainView mainView)
     {
         this.mainModel = mainModel;
@@ -28,6 +39,10 @@ public class MainController {
 
     }
 
+    /**
+     * Adds the functionality to the create vending machine button.
+     * It lets the user see another set of buttons to choose from.
+     */
     public void addCreateListener()
     {
         mainView.addCreateListener(new ActionListener() {
@@ -42,6 +57,10 @@ public class MainController {
         });
     }
 
+    /**
+     * Adds functionality to the testing vending button.
+     * Once clicked, it will try to run the selected vending machine if it exists.
+     */
     public void addTestingListener()
     {
         mainView.addTestingListener(new ActionListener() {
@@ -65,6 +84,10 @@ public class MainController {
         });
     }
 
+    /**
+     * This adds functionality to the two buttons for creating either vending machines.
+     * Once one of them is clicked, it's considered created.
+     */
     public void addChoiceListener()
     {
         mainView.addChoiceListener(new ActionListener() {

@@ -17,21 +17,7 @@ public abstract class AbstractVending{
      * This method resets all the items in every slot.
      */
     abstract void resetSlots();
-    /**
-     * This method performs the enter cash action where the user can enter the desired amount of cash to be used to buy.
-     *
-     * @param input refers to the object that will take the input of the user in the terminal
-     * @return the total amount inserted
-     */
-    abstract int enterCash(Scanner input);
-    /**
-     * This method uses the money given and the price of the item to return the change of the customer.
-     *
-     * @param amount is the amount that the customer placed in the vending machine
-     * @param cost cost of the item being bought
-     * @return the change with respect to the machines ability to give change
-     */
-    abstract int change(int amount, int cost);
+
     /**
      * This method sets the available changes for the denominations.
      *
@@ -68,16 +54,6 @@ public abstract class AbstractVending{
      * @return an int to the value of the denomination based on the index
      */
     abstract int getDENOMINATION(int index);
-
-    /**
-     * Accesses viewVendingMachine method in the VendingView class.
-     */
-    abstract void viewVendingMachine();
-
-    /**
-     * Accesses the printReport method in the VendingView class.
-     */
-    abstract void printReport();
 
     abstract  void setDisplay(boolean show);
 

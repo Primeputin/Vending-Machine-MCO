@@ -27,6 +27,12 @@ public class VendingView extends JFrame {
 	JButton fivehundred;
 	JButton done;
 	JButton exit;
+
+	/**
+	 * The constructor for this class.
+	 *
+	 * @param name is the name of this JFrame
+	 */
 	public VendingView(String name)
 	{
 		init(name);
@@ -42,12 +48,22 @@ public class VendingView extends JFrame {
 		});
 	}
 
+	/**
+	 * This adds a MainView component as one of its fields.
+	 *
+	 * @param mainSourceFrame is the JFrame that made this JFrame visible
+	 */
 	public void addMainSourceFrame(MainView mainSourceFrame)
 	{
 		this.mainSourceFrame = mainSourceFrame;
 	}
 
 
+	/**
+	 * This method initializes things for this JFrame.
+	 *
+	 * @param name is the name of this JFrame
+	 */
 	public void init(String name)
 	{
 		this.setTitle("Regular vending machine");
@@ -99,6 +115,15 @@ public class VendingView extends JFrame {
 	}
 
 
+	/**
+	 * This adds a vending item with its corresponding details and buttons in the GUI.
+	 *
+	 * @param name is the name of the item
+	 * @param price is the price of the item
+	 * @param calories is the calories that the food contain
+	 * @param individuality is the value whether if the item is add-on or not
+	 * @param availability is the number of available stocks of an item
+	 */
 	public void addViewingSlot(String name, int price, int calories, boolean individuality, int availability)
 	{
 		JPanel newJPanel = new JPanel();
@@ -113,6 +138,11 @@ public class VendingView extends JFrame {
 		this.pack();
 	}
 
+	/**
+	 * This adds all the functionality of the numpads for inputting cash and exiting selection.
+	 *
+	 * @param listener is the one that listens for something to happens. Afterward, it does a certain action for each buttons
+	 */
 	public void addDENOMINATIONlistener(ActionListener listener)
 	{
 		one.addActionListener(listener);
@@ -126,6 +156,11 @@ public class VendingView extends JFrame {
 		exit.addActionListener(listener);
 	}
 
+	/**
+	 * This adds all the functionality of selecting an item button.
+	 *
+	 * @param listener is the one that listens for something to happens. Afterward, it does a certain action for each buttons
+	 */
 	public void addVendingItemsButtonsListener(ActionListener listener)
 	{
 		JPanel panel;
@@ -146,6 +181,11 @@ public class VendingView extends JFrame {
 		}
 	}
 
+	/**
+	 * This update the details of all vending items.
+	 *
+	 * @param slots refers to the array list of slots and their respective attributes
+	 */
 	public void updateVendingItemsView(ArrayList <Slot> slots)
 	{
 		JPanel panel;
@@ -185,141 +225,10 @@ public class VendingView extends JFrame {
 	}
 
 	/**
-	 * Displays the interface for when you are inserting cash or buying from a vending machine.
+	 * This enables or disenables the numpads. But, the exit button does the opposite in respect to the argument.
 	 *
-	 * @param slots refers to the arraylist of slots
+	 * @param enabled is the value whether to enable or disenable the numpads
 	 */
-	public void viewVendingMachine(ArrayList<Slot> slots)
-	{
-		int i;
-		
-		for (i = 0; i < slots.size() / 2; i++)
-		{
-			System.out.printf("[%02d]%-20s", i, slots.get(i).getName());
-		}
-		
-		System.out.println("");
-		
-		for (i = 0; i < slots.size() / 2; i++)
-		{
-			System.out.printf("Php %-20d", slots.get(i).getPrice());
-		}
-		
-		System.out.println("");
-
-		for (i = 0; i < slots.size() / 2; i++)
-		{
-			System.out.printf("%-3d %-20s", slots.get(i).getCalories(), "cal");
-		}
-		
-		System.out.println("");
-
-		for (i = 0; i < slots.size() / 2; i++)
-		{
-			if (slots.get(i).getIndividual())
-			{
-				System.out.printf("%-24s", "Solo");
-
-			}
-			else
-			{
-				System.out.printf("%-24s", "Not solo");
-			}
-		}
-		
-		System.out.println("");
-
-		for (i = 0; i < slots.size() / 2; i++)
-		{
-			System.out.printf("x%-23d", slots.get(i).getAvailability());
-		}
-		
-		
-
-		System.out.println("");
-		System.out.println("");
-
-		
-		
-		for (i = slots.size() / 2; i < slots.size(); i++)
-		{
-			System.out.printf("[%02d]%-20s", i, slots.get(i).getName());
-		}
-		
-		System.out.println("");
-		
-		for (i = slots.size() / 2; i < slots.size(); i++)
-		{
-			System.out.printf("Php %-20d", slots.get(i).getPrice());
-		}
-		
-		System.out.println("");
-
-		for (i = slots.size() / 2; i < slots.size(); i++)
-		{
-			System.out.printf("%-3d %-20s", slots.get(i).getCalories(), "cal");
-		}
-		
-		System.out.println("");
-
-		for (i = slots.size() / 2; i < slots.size(); i++)
-		{
-			if (slots.get(i).getIndividual())
-			{
-				System.out.printf("%-24s", "Solo");
-
-			}
-			else
-			{
-				System.out.printf("%-24s", "Not solo");
-			}
-		}
-		
-		System.out.println("");
-
-		for (i = slots.size() / 2; i < slots.size(); i++)
-		{
-			System.out.printf("x%-23d", slots.get(i).getAvailability());
-		}
-		
-		System.out.println("");
-
-	}
-
-	/**
-	 * Prints the summary of sales and current stock, respective to the previous restocking
-	 *
-	 * @param slots refers to the array list of slots and their respective attributes
-	 */
-	public void printReport(ArrayList<Slot> slots)
-	{
-		int total=0;
-		System.out.println("============================================");
-		System.out.printf("%24s","Number of sold items\n");
-		for (int i=0; i<slots.size(); i++)
-		{
-			System.out.printf("%-15s| %d item/s sold\n", slots.get(i).getName(), slots.get(i).getSold());
-		}
-		System.out.println("============================================");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("==================================================================");
-		System.out.printf("%24s","Number of sales per item\n");
-		System.out.println("==================================================================");
-		System.out.printf("%-15s|\tPrevious stock\tCurrent stock\tSales\n","Item");
-		System.out.println("==================================================================");
-		for (int i=0; i<slots.size(); i++)
-		{
-			total = total + slots.get(i).getSale();
-			System.out.printf("%-15s|\t%8d\t%8d\t%4d Php\n",slots.get(i).getName(),slots.get(i).getAvailability()+slots.get(i).getSold(),slots.get(i).getAvailability(),slots.get(i).getSale());
-		}
-		System.out.println("__________________________________________________________________\n");
-		System.out.printf("Total Sales: %d Php\n", total);
-		System.out.println("==================================================================\n\n\n");
-
-	}
-
 	public void setNumpadsEnabled(boolean enabled)
 	{
 		Component[] components = numpads.getComponents();
@@ -332,6 +241,11 @@ public class VendingView extends JFrame {
 
 	}
 
+	/**
+	 * This enables or disenables the vending items buttons.
+	 *
+	 * @param enabled is the value whether to enable or disenable the numpads
+	 */
 	public void setVendingItemsEnabled(boolean enabled)
 	{
 		JPanel panel;
@@ -349,6 +263,11 @@ public class VendingView extends JFrame {
 		}
 	}
 
+	/**
+	 * This is mostly used when the numpad has selected done. The display will enable all the vending items.
+	 *
+	 * @param slots refers to the array list of slots and their respective attributes
+	 */
 	public void setVendingItemsEnabledForRegularVendingMachine(ArrayList<Slot> slots)
 	{
 		JPanel panel;
@@ -377,53 +296,101 @@ public class VendingView extends JFrame {
 
 	}
 
-
+	/**
+	 * This method returns the one denonimation button.
+	 *
+	 * @return the one denomination button
+	 */
 	public JButton getOne()
 	{
 		return one;
 	}
 
+	/**
+	 * This method returns the five denomination button.
+	 *
+	 * @return the five denomination button
+	 */
 	public JButton getFive()
 	{
 		return five;
 	}
 
+	/**
+	 * This method returns the ten denomination button.
+	 *
+	 * @return the ten denomination button
+	 */
 	public JButton getTen()
 	{
 		return ten;
 	}
 
+	/**
+	 * This method returns the twenty denomination button.
+	 *
+	 * @return the twenty denomination button
+	 */
 	public JButton getTwenty()
 	{
 		return twenty;
 	}
 
+	/**
+	 * This method returns the fifty denomination button.
+	 *
+	 * @return the fifty denomination button
+	 */
 	public JButton getFifty()
 	{
 		return fifty;
 	}
 
+	/**
+	 * This method returns the one hundred denomination button.
+	 *
+	 * @return the one hundred denomination button
+	 */
 	public JButton getOnehundred()
 	{
 		return onehundred;
 	}
 
+	/**
+	 * This method returns the five hundred denomination button.
+	 *
+	 * @return the five hundred denomination button
+	 */
 	public JButton getFivehundred()
 	{
 		return fivehundred;
 	}
 
+	/**
+	 * This method returns the done button in the numpad.
+	 *
+	 * @return the done button
+	 */
 	public JButton getDone()
 	{
 		return done;
 	}
 
+	/**
+	 * This method returns the exit button in the numpad.
+	 *
+	 * @return the exit button
+	 */
 	public JButton getExit()
 	{
 		return exit;
 	}
 
-
+	/**
+	 * This method returns the label displaying the cash entered in the vending machine.
+	 *
+	 * @return the cashEntered label
+	 */
 	public JLabel getCashEntered()
 	{
 		return cashEntered;

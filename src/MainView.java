@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * This class is for displaying the main menu.
+ *
+ * @author Vladimir Tang
+ */
 public class MainView extends JFrame {
 
     private JPanel main = new JPanel();
@@ -10,6 +15,12 @@ public class MainView extends JFrame {
     private JButton specialChoice = new JButton();
     private JButton createVending = new JButton("Create a Vending Machine");
     private JButton testVending = new JButton("Test Vending Machine");
+
+    /**
+     * Constructor for this class.
+     *
+     * @param name is the name for this JFrame
+     */
     public MainView(String name)
     {
         this.setTitle(name);
@@ -70,22 +81,31 @@ public class MainView extends JFrame {
         specialChoice.addActionListener(listener);
     }
 
-
+    /**
+     * Return the main panel in the JFrame.
+     *
+     * @return main
+     */
     public JPanel getMain()
     {
         return main;
     }
 
-    public JButton getCreateVending()
-    {
-        return createVending;
-    }
-
+    /**
+     * Return the button for testVending.
+     *
+     * @return testVending
+     */
     public JButton getTestVending()
     {
         return testVending;
     }
 
+    /**
+     * Return the choose button.
+     *
+     * @return choose
+     */
     public JPanel getChoose()
     {
         return choose;

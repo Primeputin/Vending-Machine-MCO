@@ -16,6 +16,12 @@ public class SpecialVendingView extends VendingView{
     JButton doneCustomized;
     JDialog loading;
     JLabel loadingTask;
+
+    /**
+     * The constructor for this class.
+     *
+     * @param name is the name of this JFrame
+     */
     public SpecialVendingView(String name)
     {
         super(name);
@@ -44,21 +50,6 @@ public class SpecialVendingView extends VendingView{
 
     }
 
-
-    /**
-     * Displays the interface for when you are inserting cash or buying from a special vending machine.
-     * This includes the showing of the customized burger.
-     *
-     * @param slots refers to the arraylist of slots
-     */
-    @Override
-    public void viewVendingMachine(ArrayList<Slot> slots)
-    {
-        super.viewVendingMachine(slots);
-        System.out.println("-----------------------------------------");
-        System.out.println("Customized Items:");
-        System.out.printf("[%d] - Burger\n", slots.size());
-    }
 
     /**
      * Showing the process of the burger being made.
@@ -131,6 +122,11 @@ public class SpecialVendingView extends VendingView{
         System.out.println("Calories: " + burger.getCalories());
     }
 
+    /**
+     * This updates the vending items along with its availability status. Thus, it disenable them when necessary at the same time.
+     *
+     * @param slots refers to the array list of slots and their respective attributes
+     */
     public void updateVendingItemsViewWithAvailability(ArrayList <Slot> slots)
     {
         JPanel panel;
@@ -181,6 +177,12 @@ public class SpecialVendingView extends VendingView{
         }
     }
 
+    /**
+     * This method updates the display of the vending item and the customized item details.
+     *
+     * @param slots refers to the array list of slots and their respective attributes
+     * @param burger is the customized item
+     */
     public void updateSpecialVendingItemsView(ArrayList <Slot> slots, Customized burger)
     {
         updateVendingItemsViewWithAvailability(slots);
@@ -204,6 +206,11 @@ public class SpecialVendingView extends VendingView{
 
     }
 
+    /**
+     * This enables or disenables the vending items buttons along with the customized button.
+     *
+     * @param enabled is the value whether to enable or disenable the numpads
+     */
     @Override
     public void setVendingItemsEnabled(boolean enabled)
     {
@@ -215,6 +222,11 @@ public class SpecialVendingView extends VendingView{
         }
     }
 
+    /**
+     * his is mostly used when the numpad has selected done. The display will enable all the vending items, including the customized item.
+     *
+     * @param slots refers to the array list of slots and their respective attributes
+     */
     @Override
     public void setVendingItemsEnabledForRegularVendingMachine(ArrayList<Slot> slots)
     {
@@ -225,16 +237,32 @@ public class SpecialVendingView extends VendingView{
         }
     }
 
+    /**
+     * This adds a functionality for the burger button.
+     *
+     * @param listener is the one that listens for something to happens. Afterward, it does a certain action
+     */
     public void addCustomizedButtonListener(ActionListener listener)
     {
         burgerButton.addActionListener(listener);
     }
 
+    /**
+     * This adds a functionality for the done customized button.
+     *
+     * @param listener is the one that listens for something to happens. Afterward, it does a certain action
+     */
     public void addDoneCustomizingListener(ActionListener listener)
     {
         doneCustomized.addActionListener(listener);
     }
 
+    /**
+     * Sets the only type chosen as enabled in the vending items
+     *
+     * @param slots refers to the array list of slots and their respective attributes
+     * @param type refers to the type of item (bun, meat, or others)
+     */
     public void setOnlyTypeEnabled(ArrayList <Slot> slots, int type)
     {
         JPanel panel;
@@ -263,6 +291,12 @@ public class SpecialVendingView extends VendingView{
         }
     }
 
+    /**
+     * This sets all the vending items enables except for the chose type of item.
+     *
+     * @param slots refers to the array list of slots and their respective attributes
+     * @param type refers to the type of item (bun, meat, or others)
+     */
     public void setExceptTypeEnabled(ArrayList <Slot> slots, int type)
     {
         JPanel panel;
@@ -292,6 +326,9 @@ public class SpecialVendingView extends VendingView{
         }
     }
 
+    /**
+     * Displays the default for the customized item details.
+     */
     public void defaultCustomizedDetails()
     {
         int index = 0;
@@ -312,34 +349,54 @@ public class SpecialVendingView extends VendingView{
         }
     }
 
+    /**
+     * This does something when something happens to the laoding JDialog component.
+     *
+     * @param componentAdapter an abstract adapter class for receiving component events
+     */
     public void processDialogListener(ComponentAdapter componentAdapter)
     {
         loading.addComponentListener(componentAdapter);
     }
 
+    /**
+     * This does something when something happens to this JFrame component.
+     *
+     * @param componentAdapter an abstract adapter class for receiving component events
+     */
     public void hiddenFrame(ComponentAdapter componentAdapter)
     {
         this.addComponentListener(componentAdapter);
     }
 
+    /**
+     * This method returns the panel containing the labels which contains some detail about the customized item.
+     *
+     * @return the JPanel customizedDetails
+     */
     public JPanel getCustomizedDetails()
     {
         return customizedDetails;
     }
 
+    /**
+     * This method returns the burger button.
+     *
+     * @return the burger button
+     */
     public JButton getBurgerButton()
     {
         return burgerButton;
     }
 
+    /**
+     * This method returns the done customized button.
+     *
+     * @return the done customized button
+     */
     public JButton getDoneCustomized()
     {
         return  doneCustomized;
-    }
-
-    public JDialog getLoading()
-    {
-        return  loading;
     }
 
 

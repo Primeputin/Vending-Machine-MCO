@@ -77,97 +77,11 @@ public class VendingModel {
 	}
 
 	/**
-	 * This method performs the enter cash action where the user can enter the desired amount of cash to be used to buy.
-	 *
-	 * @param input refers to the object that will take the input of the user in the terminal
-	 * @return the total amount inserted
-	 */
-	public int enterCash(Scanner input)
-	{
-		int amount = 0;
-		int choice;
-		boolean exit = false;
-
-		try {
-			while(!exit)
-			{
-				System.out.println("TOTAL CASH INSERTED: " + amount);
-				System.out.println("[0] - Php 1 [1] - Php 5 [2] - Php 10");
-				System.out.println("[3] - Php 20 [4] - Php 50 [5] - Php 100");
-				System.out.println("[6] - Php 500 [7] - EXIT");
-				System.out.print("Enter DENOMINATION: ");
-				
-				choice = input.nextInt();
-
-				switch (choice) {
-					case 0 -> amount += 1;
-					case 1 -> amount += 5;
-					case 2 -> amount += 10;
-					case 3 -> amount += 20;
-					case 4 -> amount += 50;
-					case 5 -> amount += 100;
-					case 6 -> amount += 500;
-					case 7 -> exit = true;
-					default -> System.out.println("Wrong input!!!");
-				}
-				
-			}
-		}
-		catch (InputMismatchException e)
-		{
-			System.out.println("Input error");
-			e.printStackTrace();
-		}
-		
-		return amount;
-		
-		
-	}
-
-	/**
 	 * This method uses the money given and the price of the item to return the change of the customer.
 	 *
-	 * @param amount is the amount that the customer placed in the vending machine
 	 * @param cost cost of the item being bought
 	 * @return the change with respect to the machines ability to give change
 	 */
-	public int change(int amount, int cost)
-	{
-		int change = amount - cost;
-		int[] minusAvailable = new int[7];
-		
-		for (int i = availableChanges.length - 1; i >= 1; i--)
-		{
-			if (change / DENOMINATION[i] <= availableChanges[i] && availableChanges[i] != 0)
-			{
-				minusAvailable[i] = change / DENOMINATION[i];
-				change %= DENOMINATION[i];
-			}
-		}
-		
-		// for the 1 php
-		if (change / DENOMINATION[0] <= availableChanges[0] && availableChanges[0] != 0)
-		{
-			minusAvailable[0] = change;
-			change = 0;
-		}
-		
-		if (change != 0)
-		{
-			change = -1;
-		}
-		else
-		{
-			change = amount - cost;
-			for (int i = 0; i < availableChanges.length; i++)
-			{
-				availableChanges[i] -= minusAvailable[i];
-			}		
-			
-		}
-		return change;
-	}
-
 	public int change(int cost)
 	{
 		int change = cashEntered - cost;
@@ -205,6 +119,9 @@ public class VendingModel {
 		return change;
 	}
 
+	/**
+	 * Resets cash entered to zero.
+	 */
 	void resetCashEntered()
 	{
 		cashEntered = 0;
@@ -233,6 +150,11 @@ public class VendingModel {
 		availableChanges[index] = quantity;
 	}
 
+	/**
+	 * Increased cash entered by the amount inserted.
+	 *
+	 * @param amount is the cash value inserted
+	 */
 	public void increaseCashEntered(int amount)
 	{
 		cashEntered += amount;
@@ -281,6 +203,11 @@ public class VendingModel {
 		return this.DENOMINATION[index];
 	}
 
+	/**
+	 * Returns cash entered in the vending machine.
+	 *
+	 * @return the cashEntered attribute
+	 */
 	public int getCashEntered()
 	{
 		return cashEntered;

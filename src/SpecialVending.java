@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * This interacts with the special vending view class and gives the values for it to print.
@@ -54,31 +53,6 @@ public class SpecialVending extends AbstractVending{
     public void resetSlots()
     {
         specialVendingModel.resetSlots();
-    }
-
-    /**
-     *This method calls the method in slots to initiate the vending machine to accept cash.
-     *
-     * @param input refers to the object that will take the input of the user in the terminal
-     * @return the amount for the total cash inserted
-     */
-    @Override
-    public int enterCash(Scanner input)
-    {
-        return specialVendingModel.enterCash(input);
-    }
-
-    /**
-     * This method calls the method in the vendingModel class to return the change of a user.
-     *
-     * @param amount the amount of cash placed in the vending machine
-     * @param cost the price of the item bought
-     * @return the amount of change to be given to the user
-     */
-    @Override
-    public int change(int amount, int cost)
-    {
-        return specialVendingModel.change(amount, cost);
     }
 
     /**
@@ -156,62 +130,10 @@ public class SpecialVending extends AbstractVending{
     }
 
     /**
-     * This method refers to the view vending class which is responsible for the printing of various texts for the vending machine when buying or testing the vending machines features.
-     */
-    @Override
-    public void viewVendingMachine()
-    {
-        specialVendingView.viewVendingMachine(specialVendingModel.getSlots());
-    }
-
-    /**
-     *This method prints the report to on the sales and stocks depending on the last restocking.
-     */
-    @Override
-    public void printReport(){specialVendingView.printReport(specialVendingModel.getSlots());}
-
-    /**
-     * This method is for creating a burger.
-     */
-    public void setUpCustomized()
-    {
-        specialVendingModel.setUpCustomized();
-    }
-
-    /**
-     * Returns the customized object attribute.
+     * This method set whether to show the gui or not.
      *
-     * @return the customized object attribute
+     * @param show true = show false = do not show
      */
-    public Customized getBurger() {
-        return specialVendingModel.getBurger();
-    }
-
-    /**
-     * Sets the customized object attribute.
-     *
-     * @param burger is the customized object attribute
-     */
-    public void setBurger(Customized burger) {
-        specialVendingModel.setBurger(burger);
-    }
-
-    /**
-     * Showing the process of the burger being made.
-     */
-    public void makingBurgerProcess()
-    {
-        specialVendingView.makingBurgerProcess(specialVendingModel.getBurger());
-    }
-
-    /**
-     * Show the details of a customized item.
-     */
-    public void displayCustomized()
-    {
-        specialVendingView.displayCustomized(specialVendingModel.getBurger());
-    }
-
     @Override
     public void setDisplay(boolean show)
     {
@@ -219,6 +141,9 @@ public class SpecialVending extends AbstractVending{
 
     }
 
+    /**
+     * Add vending items from the vending model to show in the GUI.
+     */
     @Override
     public void addViewingSlot()
     {
@@ -229,12 +154,20 @@ public class SpecialVending extends AbstractVending{
         }
     }
 
+    /**
+     * This method adds a mainSourceFrame to the vending view component.
+     *
+     * @param mainSourceFrame the mainView that came before vendingView
+     */
     @Override
     public void addMainSourceFrame(MainView mainSourceFrame)
     {
         specialVendingView.addMainSourceFrame(mainSourceFrame);
     }
 
+    /**
+     * This method sets the functionality for the numpads functionality in the GUI.
+     */
     @Override
     public void addDENOMINATIONlistener()
     {
@@ -293,6 +226,9 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    /**
+     * This method sets the functionality for the vending items buttons functionality in the GUI.
+     */
     @Override
     public void addVendingItemsButtonsListener()
     {
@@ -353,6 +289,11 @@ public class SpecialVending extends AbstractVending{
 
     }
 
+    /**
+     * This method does the part for the transaction of the vending machine.
+     *
+     * @param slot refers to the array list of slots and their respective attributes
+     */
     @Override
     public void vendingTransaction(Slot slot)
     {
@@ -378,6 +319,9 @@ public class SpecialVending extends AbstractVending{
 
     }
 
+    /**
+     * This transaction part of the special vending machine should only be used for transactions regarding a customized item.
+     */
     public void vendingCustomizedTransaction()
     {
         int change;
@@ -410,12 +354,18 @@ public class SpecialVending extends AbstractVending{
 
     }
 
+    /**
+     * Uses the vendingModel's data to update the display of the vending items in the gui.
+     */
     @Override
     public void updateVendingItemsView()
     {
         specialVendingView.updateVendingItemsView(specialVendingModel.getSlots());
     }
 
+    /**
+     * Uses the vendingModel's data to update the display of the vending items in the gui (including the customized item).
+     */
     public void updateSpecialVendingItemsView()
     {
         int index = 0;
@@ -446,6 +396,9 @@ public class SpecialVending extends AbstractVending{
     }
 
 
+    /**
+     * Default settings view for the vending machine (cashentered display is taken from the vending model).
+     */
     @Override
     public void defaultSettingsView()
     {
@@ -456,6 +409,9 @@ public class SpecialVending extends AbstractVending{
         specialVendingView.defaultCustomizedDetails();
     }
 
+    /**
+     * This method adds functionality for the customized button.
+     */
     public void addCustomizedButtonListener()
     {
         specialVendingView.addCustomizedButtonListener(new ActionListener() {
@@ -467,6 +423,9 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    /**
+     * This method adds functionality for the done customizing button.
+     */
     public void addDoneCustomizingListener()
     {
         specialVendingView.addDoneCustomizingListener(new ActionListener() {
@@ -483,6 +442,9 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    /**
+     * When the dialog is closed. The vending view will be visible again.
+     */
     public void processDialogListener()
     {
         specialVendingView.processDialogListener(new ComponentAdapter() {
@@ -494,6 +456,9 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    /**
+     * When the vending view becomes invisible, resets the customized item.
+     */
     public void hiddenFrame()
     {
         specialVendingView.hiddenFrame(new ComponentAdapter() {

@@ -95,6 +95,9 @@ public class Slot extends Item{
 		tempAvailability+=1;
 	}
 
+	/**
+	 * This is used when an item is not being sold immediately but used as an ingredient.
+	 */
 	public void useAsIngredient()
 	{
 		items.removeFirst();
@@ -102,6 +105,9 @@ public class Slot extends Item{
 		tempAvailability-=1;
 	}
 
+	/**
+	 * Revert the availability by adding the temporary availability.
+	 */
 	public void returnToOriginalAvailability()
 	{
 		availability += tempAvailability;
@@ -167,6 +173,11 @@ public class Slot extends Item{
 		return availability;
 	}
 
+	/**
+	 * Returns the temporary availability.
+	 *
+	 * @return the attribute temporary availability
+	 */
 	public int getTempAvailability()
 	{
 		return tempAvailability;

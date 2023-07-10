@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 /**
  * This interacts with the vending view class and gives the values for it to print.
  * It also performs various methods that refer to the action of the vending machine.
@@ -52,31 +52,6 @@ public class Vending extends AbstractVending{
 	public void resetSlots()
 	{
 		vendingModel.resetSlots();
-	}
-
-	/**
-	 *This method calls the method in slots to initiate the vending machine to accept cash.
-	 *
-	 * @param input refers to the object that will take the input of the user in the terminal
-	 * @return the amount for the total cash inserted
-	 */
-	@Override
-	public int enterCash(Scanner input)
-	{
-		return vendingModel.enterCash(input);
-	}
-
-	/**
-	 * This method calls the method in the vendingModel class to return the change of a user.
-	 *
-	 * @param amount the amount of cash placed in the vending machine
-	 * @param cost the price of the item bought
-	 * @return the amount of change to be given to the user
-	 */
-	@Override
-	public int change(int amount, int cost)
-	{
-		return vendingModel.change(amount, cost);
 	}
 
 	/**
@@ -153,26 +128,19 @@ public class Vending extends AbstractVending{
 	}
 
 	/**
-	 * This method refers to the view vending class which is responsible for the printing of various texts for the vending machine when buying or testing the vending machines features.
+	 * This method set whether to show the gui or not.
+	 *
+	 * @param show true = show false = do not show
 	 */
-	@Override
-	public void viewVendingMachine()
-	{
-		vendingView.viewVendingMachine(vendingModel.getSlots());
-	}
-
-	/**
-	 *This method prints the report to on the sales and stocks depending on the last restocking.
-	 */
-	@Override
-	public void printReport(){vendingView.printReport(vendingModel.getSlots());}
-
 	@Override
 	public void setDisplay(boolean show)
 	{
 		vendingView.setVisible(show);
 	}
 
+	/**
+	 * Add vending items from the vending model to show in the GUI.
+	 */
 	@Override
 	public void addViewingSlot()
 	{
@@ -183,12 +151,20 @@ public class Vending extends AbstractVending{
 		}
 	}
 
+	/**
+	 * This method adds a mainSourceFrame to the vending view component.
+	 *
+	 * @param mainSourceFrame the mainView that came before vendingView
+	 */
 	@Override
 	public void addMainSourceFrame(MainView mainSourceFrame)
 	{
 		vendingView.addMainSourceFrame(mainSourceFrame);
 	}
 
+	/**
+	 * This method sets the functionality for the numpads functionality in the GUI.
+	 */
 	@Override
 	public void addDENOMINATIONlistener()
 	{
@@ -241,6 +217,9 @@ public class Vending extends AbstractVending{
 		});
 	}
 
+	/**
+	 * This method sets the functionality for the vending items buttons functionality in the GUI.
+	 */
 	@Override
 	public void addVendingItemsButtonsListener()
 	{
@@ -261,6 +240,11 @@ public class Vending extends AbstractVending{
 		});
 	}
 
+	/**
+	 * This method does the part for the transaction of the vending machine.
+	 *
+	 * @param slot refers to the array list of slots and their respective attributes
+	 */
 	@Override
 	public void vendingTransaction(Slot slot)
 	{
@@ -286,6 +270,9 @@ public class Vending extends AbstractVending{
 
 	}
 
+	/**
+	 * Uses the vendingModel's data to update the display of the vending items in the gui.
+	 */
 	@Override
 	public void updateVendingItemsView()
 	{
@@ -293,6 +280,9 @@ public class Vending extends AbstractVending{
 	}
 
 
+	/**
+	 * Default settings view for the vending machine (cashentered display is taken from the vending model).
+	 */
 	@Override
 	public void defaultSettingsView()
 	{
