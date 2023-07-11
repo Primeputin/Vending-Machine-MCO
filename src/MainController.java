@@ -34,7 +34,7 @@ public class MainController {
 
 
         addCreateListener();
-        addTestingListener();
+        addVendingFeaturesListener();
         addChoiceListener();
 
     }
@@ -61,21 +61,21 @@ public class MainController {
      * Adds functionality to the testing vending button.
      * Once clicked, it will try to run the selected vending machine if it exists.
      */
-    public void addTestingListener()
+    public void addVendingFeaturesListener()
     {
-        mainView.addTestingListener(new ActionListener() {
+        mainView.addVendingFeaturesListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                mainView.setVisible(false);
+
                 if (mainModel.getVendingChoice() == 1) // regular vending machine chosen
                 {
-                    mainView.setVisible(false);
                     mainModel.getVendingMachine().defaultSettingsView();
                     mainModel.getVendingMachine().updateVendingItemsView();
                     mainModel.getVendingMachine().setDisplay(true);
                 }
                 else if (mainModel.getVendingChoice() == 2) // special vending machine chosen
                 {
-                    mainView.setVisible(false);
                     mainModel.getSpecialVendingMachine().defaultSettingsView();
                     mainModel.getSpecialVendingMachine().updateVendingItemsView();
                     mainModel.getSpecialVendingMachine().setDisplay(true);

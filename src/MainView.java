@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
@@ -15,6 +16,10 @@ public class MainView extends JFrame {
     private JButton specialChoice = new JButton();
     private JButton createVending = new JButton("Create a Vending Machine");
     private JButton testVending = new JButton("Test Vending Machine");
+    private JPanel featuresSelection = new JPanel();
+    private JButton vendingFeatures = new JButton("Vending Features");
+    private JButton maintenanceFeatures = new JButton("Maintenance Features");
+    private JButton exitToMainMain = new JButton("Back");
 
     /**
      * Constructor for this class.
@@ -41,6 +46,13 @@ public class MainView extends JFrame {
 
         testVending.setFont(new Font("Courier", Font.PLAIN, 15));
         testVending.setMargin(new Insets(10, 25, 10, 25));
+        vendingFeatures.setFont(new Font("Courier", Font.PLAIN, 15));
+        vendingFeatures.setMargin(new Insets(10, 25, 10, 25));
+        maintenanceFeatures.setFont(new Font("Courier", Font.PLAIN, 15));
+        maintenanceFeatures.setMargin(new Insets(10, 25, 10, 25));
+        exitToMainMain.setFont(new Font("Courier", Font.PLAIN, 15));
+        exitToMainMain.setMargin(new Insets(10, 25, 10, 25));
+        featuresSelection.setVisible(false);
 
 
         testVending.setEnabled(false);
@@ -56,25 +68,62 @@ public class MainView extends JFrame {
         choose.add(regularChoice, BorderLayout.NORTH);
         choose.add(specialChoice, BorderLayout.SOUTH);
 
+        testVending.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.setVisible(false);
+                featuresSelection.setVisible(true);
+                pack();
+            }
+        });
 
+        exitToMainMain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.setVisible(true);
+                featuresSelection.setVisible(false);
+                pack();
+            }
+        });
+
+        featuresSelection.setLayout(new BorderLayout());
+        featuresSelection.add(vendingFeatures, BorderLayout.WEST);
+        featuresSelection.add(maintenanceFeatures, BorderLayout.EAST);
+        featuresSelection.add(exitToMainMain, BorderLayout.SOUTH);
 
         this.add(main);
         this.add(choose);
+        this.add(featuresSelection);
         this.setVisible(true);
         this.pack();
     }
 
 
+    /**
+     * This creates a action listener when create vending button is clicked.
+     *
+     * @param listener is the one that listens for something to happens. Afterward, it does a certain action for the button
+     */
     public void addCreateListener(ActionListener listener)
     {
         createVending.addActionListener(listener);
     }
 
-    public void addTestingListener(ActionListener listener)
+    /**
+     * This creates a action listener when vending features button is clicked.
+     *
+     * @param listener is the one that listens for something to happens. Afterward, it does a certain action for the button
+     */
+    public void addVendingFeaturesListener(ActionListener listener)
     {
-        testVending.addActionListener(listener);
+        vendingFeatures.addActionListener(listener);
     }
 
+    /**
+     * This creates an action listener when either regular vending machine or special vending machine button is clicked.
+     *
+     * @param listener is the one that listens for something to happens. Afterward, it does a certain action for each button
+     */
     public void addChoiceListener(ActionListener listener)
     {
         regularChoice.addActionListener(listener);
