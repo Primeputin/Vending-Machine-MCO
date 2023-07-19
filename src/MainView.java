@@ -97,7 +97,7 @@ public class MainView extends JFrame {
         this.setVisible(true);
         this.pack();
     }
-
+    public void addMaintenanceListener(ActionListener listener){maintenanceFeatures.addActionListener(listener);}
 
     /**
      * This creates a action listener when create vending button is clicked.

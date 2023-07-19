@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.WindowAdapter;
 
 public class MaintenanceView extends JFrame {
     private JButton btnGetMoney;
@@ -18,12 +20,29 @@ public class MaintenanceView extends JFrame {
         setTitle("Maintenance");
         setSize(300,500);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        setVisible(true);
-
     }
-    public static void main (String args[])
+    public void addPrintReportButtonListener (ActionListener listener)
     {
-        MaintenanceView MaintenanceView = new MaintenanceView();
+        btnPrintReport.addActionListener(listener);
     }
-
+    public void addGetChangeListener (ActionListener listener)
+    {
+        btnGetMoney.addActionListener(listener);
+    }
+    public void addChangePriceListener(ActionListener listener)
+    {
+        btnChangePrice.addActionListener(listener);
+    }
+    public void addRestockListener (ActionListener listener)
+    {
+        btnRestock.addActionListener(listener);
+    }
+    public void addRefillListener(ActionListener listener)
+    {
+        btnRefillMoney.addActionListener(listener);
+    }
+    public void addMaintenanceExit(WindowAdapter windowAdapter)
+    {
+        this.addWindowListener(windowAdapter);
+    }
 }

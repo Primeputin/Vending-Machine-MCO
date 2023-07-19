@@ -111,4 +111,6 @@ public class SpecialVendingModel extends VendingModel{
     {
         this.meat = meat;
     }
+
+
 }

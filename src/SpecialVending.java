@@ -470,4 +470,7 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    public VendingModel getVendingModel() {
+        return specialVendingModel;
+    }
 }

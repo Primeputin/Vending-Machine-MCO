@@ -70,4 +70,6 @@ public abstract class AbstractVending{
     abstract void updateVendingItemsView();
 
     abstract void defaultSettingsView();
+
+    abstract VendingModel getVendingModel();
 }

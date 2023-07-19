@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ComponentAdapter;
 
 public class RefillView extends JFrame{
     private JButton a1Button;
@@ -19,10 +20,10 @@ public class RefillView extends JFrame{
         setTitle("Refill Change");
         setSize(300, 500);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        setVisible(true);
     }
-    public static void main (String args[])
+    public void addRefillExit(ComponentAdapter componentAdapter)
     {
-        RefillView RefillView  = new RefillView();
+        this.addComponentListener(componentAdapter);
     }
+
 }

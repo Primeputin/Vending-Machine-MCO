@@ -8,6 +8,8 @@ public class MainModel {
 
     private Vending vendingMachine;
     private SpecialVending specialVendingMachine;
+
+    private MaintenanceController maintenanceController;
     private int vendingChoice; // 0 = means none chosen 1 = regular 2 = special
 
     /**
@@ -20,6 +22,7 @@ public class MainModel {
     {
         this.vendingMachine = vendingMachine;
         this.specialVendingMachine = specialVendingMachine;
+        this.maintenanceController= new MaintenanceController();
         vendingChoice = 0;
     }
 
@@ -105,4 +108,5 @@ public class MainModel {
         return vendingChoice;
     }
 
+    public MaintenanceController getMaintenanceController() {return maintenanceController;}
 }

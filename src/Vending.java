@@ -293,4 +293,8 @@ public class Vending extends AbstractVending{
 
 	}
 
+	@Override
+	public VendingModel getVendingModel() {
+		return vendingModel;
+	}
 }

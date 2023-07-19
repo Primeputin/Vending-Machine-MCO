@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ComponentAdapter;
 
 public class GetChange extends JFrame {
     private JLabel Amount;
@@ -8,14 +9,15 @@ public class GetChange extends JFrame {
     {
         setContentPane(GetChangePanel);
         setTitle("Change Gotten");
-        setSize(300, 100);
+        setSize(300, 300);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        Amount.setText("1");
-        setVisible(true);
     }
-    public static void main (String args[])
+    public void addGetChangeExit(ComponentAdapter componentAdapter)
     {
-        GetChange GetChange = new GetChange();
+        this.addComponentListener(componentAdapter);
     }
-
+    public JPanel getGetChangePanel() {
+        return this.GetChangePanel;
+    }
+    public JLabel getAmountLabel(){return this.Amount;}
 }

@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * This class is for controlling the main model and main view component.
@@ -10,6 +9,7 @@ public class MainController {
 
     private MainModel mainModel;
     private MainView mainView;
+
 
     /**
      * Constructor for this class.
@@ -36,7 +36,8 @@ public class MainController {
         addCreateListener();
         addVendingFeaturesListener();
         addChoiceListener();
-
+        addMaintenanceListener();
+        addMaintenanceExit();
     }
 
     /**
@@ -108,6 +109,36 @@ public class MainController {
                 mainView.getMain().setVisible(true);
                 mainView.getTestVending().setEnabled(true);
                 mainView.pack();
+            }
+        });
+    }
+
+    public void addMaintenanceListener()
+    {
+        mainView.addMaintenanceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainView.setVisible(false);
+                mainModel.getMaintenanceController().getMaintenanceView().setVisible(true);
+                if(mainModel.getVendingChoice()==1)
+                {
+                    mainModel.getMaintenanceController().addVendingModel(mainModel.getVendingMachine().getVendingModel());
+                }
+                else if (mainModel.getVendingChoice()==2)
+                {
+                    mainModel.getMaintenanceController().addVendingModel(mainModel.getSpecialVendingMachine().getVendingModel());
+                }
+
+            }
+        });
+    }
+    public void addMaintenanceExit()
+    {
+        mainModel.getMaintenanceController().getMaintenanceView().addMaintenanceExit(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                mainView.setVisible(true);
             }
         });
     }

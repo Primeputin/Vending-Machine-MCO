@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ComponentAdapter;
 
 public class RestockView extends JFrame{
     private JButton bunButton;
@@ -20,10 +21,9 @@ public class RestockView extends JFrame{
         setTitle("Restock");
         setSize(300, 500);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        setVisible(true);
     }
-    public static void main (String args[])
+    public void addRestockExit(ComponentAdapter componentAdapter)
     {
-        RestockView RestockView = new RestockView();
+        this.addComponentListener(componentAdapter);
     }
 }

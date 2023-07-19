@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ComponentAdapter;
 
 public class ChangePriceView extends JFrame {
     private JButton bunButton;
@@ -20,10 +21,9 @@ public class ChangePriceView extends JFrame {
         setTitle("Change Price");
         setSize(300, 500);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        setVisible(true);
     }
-    public static void main (String args[])
+    public void addChangePriceExit(ComponentAdapter componentAdapter)
     {
-        ChangePriceView ChangePriceView = new ChangePriceView();
+        this.addComponentListener(componentAdapter);
     }
 }
