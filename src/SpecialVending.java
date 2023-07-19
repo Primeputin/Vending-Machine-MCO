@@ -32,7 +32,7 @@ public class SpecialVending extends AbstractVending{
         addCustomizedButtonListener();
         addDoneCustomizingListener();
         processDialogListener();
-        hiddenFrame();
+        addSpecialVendingExitListener();
     }
 
     /**
@@ -456,15 +456,12 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
-    /**
-     * When the vending view becomes invisible, resets the customized item.
-     */
-    public void hiddenFrame()
+    public void addSpecialVendingExitListener()
     {
-        specialVendingView.hiddenFrame(new ComponentAdapter() {
+        specialVendingView.addSpecialVendingExitListener(new WindowAdapter() {
             @Override
-            public void componentHidden(ComponentEvent e) {
-                super.componentHidden(e);
+            public void windowClosed(WindowEvent e) {
+                super.windowClosed(e);
                 specialVendingModel.giveOutBurger();
             }
         });

@@ -42,10 +42,7 @@ public class SpecialVendingModel extends VendingModel{
     {
         for (Slot i: getSlots())
         {
-            while (i.getTempAvailability() > 0)
-            {
-                i.returnToOriginalAvailability();
-            }
+            i.returnToOriginalAvailability();
         }
 
         burger = null;

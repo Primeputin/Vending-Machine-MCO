@@ -359,15 +359,11 @@ public class SpecialVendingView extends VendingView{
         loading.addComponentListener(componentAdapter);
     }
 
-    /**
-     * This does something when something happens to this JFrame component.
-     *
-     * @param componentAdapter an abstract adapter class for receiving component events
-     */
-    public void hiddenFrame(ComponentAdapter componentAdapter)
+    public void addSpecialVendingExitListener(WindowAdapter windowAdapter)
     {
-        this.addComponentListener(componentAdapter);
+        this.addWindowListener(windowAdapter);
     }
+
 
     /**
      * This method returns the panel containing the labels which contains some detail about the customized item.
