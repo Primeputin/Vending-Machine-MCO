@@ -17,7 +17,6 @@ public class Vending extends AbstractVending{
 	
 	private VendingModel vendingModel;
 	private VendingView vendingView;
-	private boolean created = false;
 
 	/**
 	 * This constructor method creates a vending model and a vending view class.
