@@ -102,6 +102,7 @@ public class Slot extends Item{
 	{
 		items.removeFirst();
 		sold += 1;
+		sale += this.getPrice();
 		tempAvailability-=1;
 	}
 
