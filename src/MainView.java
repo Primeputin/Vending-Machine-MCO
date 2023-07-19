@@ -97,6 +97,12 @@ public class MainView extends JFrame {
         this.setVisible(true);
         this.pack();
     }
+
+    /**
+     * This creates a action listener when create maintenance features button is clicked.
+     *
+     * @param listener is the one that listens for something to happens. Afterward, it does a certain action for the button
+     */
     public void addMaintenanceListener(ActionListener listener){maintenanceFeatures.addActionListener(listener);}
 
     /**

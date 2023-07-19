@@ -76,6 +76,10 @@ public class Vending extends AbstractVending{
 		vendingModel.setAvailableChange(quantity, index);
 	}
 
+	/**
+	 * This method sets the vending items to be enabled or disenabled.
+	 * @param enabled
+	 */
 	public void setVendingItemsEnabled(boolean enabled)
 	{
 		vendingView.setVendingItemsEnabled(enabled);
@@ -292,6 +296,11 @@ public class Vending extends AbstractVending{
 
 	}
 
+	/**
+	 * This returns the vending model attribute of this object
+	 *
+	 * @return the vending model
+	 */
 	@Override
 	public VendingModel getVendingModel() {
 		return vendingModel;

@@ -456,6 +456,9 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    /**
+     * This for resetting the burger when the view's exit button is closed.
+     */
     public void addSpecialVendingExitListener()
     {
         specialVendingView.addSpecialVendingExitListener(new WindowAdapter() {
@@ -467,6 +470,11 @@ public class SpecialVending extends AbstractVending{
         });
     }
 
+    /**
+     * This returns the regular vending model of this object.
+     *
+     * @return the parent of this object's special vending model
+     */
     public VendingModel getVendingModel() {
         return specialVendingModel;
     }

@@ -113,6 +113,9 @@ public class MainController {
         });
     }
 
+    /**
+     * This shows the maintenance menu while using either regular or special vending machine as the model when the maintenance button is clicked.
+     */
     public void addMaintenanceListener()
     {
         mainView.addMaintenanceListener(new ActionListener() {
@@ -132,6 +135,10 @@ public class MainController {
             }
         });
     }
+
+    /**
+     * When the maintenance menu is closed, the main view will popped up.
+     */
     public void addMaintenanceExit()
     {
         mainModel.getMaintenanceController().getMaintenanceView().addMaintenanceExit(new WindowAdapter() {

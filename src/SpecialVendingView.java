@@ -359,6 +359,11 @@ public class SpecialVendingView extends VendingView{
         loading.addComponentListener(componentAdapter);
     }
 
+    /**
+     * This for resetting the burger when the view's exit button is closed.
+     *
+     * @param windowAdapter is the thing to wait to what happens to the window
+     */
     public void addSpecialVendingExitListener(WindowAdapter windowAdapter)
     {
         this.addWindowListener(windowAdapter);

@@ -108,5 +108,10 @@ public class MainModel {
         return vendingChoice;
     }
 
+    /**
+     * Returns the maintenance controller
+     *
+     * @return maintenanceController
+     */
     public MaintenanceController getMaintenanceController() {return maintenanceController;}
 }
