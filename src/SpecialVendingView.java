@@ -111,18 +111,6 @@ public class SpecialVendingView extends VendingView{
     }
 
     /**
-     * Show the details of a customized item.
-     *
-     * @param burger is the customized object
-     */
-    public void displayCustomized(Customized burger)
-    {
-        System.out.println("Customized item:" + Customized.NAME);
-        System.out.println("Price: Php " + burger.getPrice());
-        System.out.println("Calories: " + burger.getCalories());
-    }
-
-    /**
      * This updates the vending items along with its availability status. Thus, it disenable them when necessary at the same time.
      *
      * @param slots refers to the array list of slots and their respective attributes
@@ -171,7 +159,10 @@ public class SpecialVendingView extends VendingView{
                     }
 
                 }
-                components[j].setEnabled(enable); // for the button
+                if (!enable)
+                {
+                    components[j].setEnabled(enable); // for the button
+                }
                 slotIndex++;
             }
         }

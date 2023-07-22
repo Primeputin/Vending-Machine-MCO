@@ -368,28 +368,7 @@ public class SpecialVending extends AbstractVending{
      */
     public void updateSpecialVendingItemsView()
     {
-        int index = 0;
-        if (specialVendingModel.getBurger() == null)
-        {
-            specialVendingView.updateVendingItemsView(getSlots());
-            for (Component i: specialVendingView.getCustomizedDetails().getComponents())
-            {
-                if (i instanceof  JLabel)
-                {
-                    if (index == 0) // price
-                    {
-                        ((JLabel) i).setText("Php " + specialVendingModel.getBun().getPrice());
-
-                    }
-                    else if (index == 1) // calories
-                    {
-                        ((JLabel) i).setText(specialVendingModel.getBun().getCalories() + " calories");
-                    }
-                    index++;
-                }
-            }
-        }
-        else
+        if (specialVendingModel.getBurger() != null)
         {
             specialVendingView.updateSpecialVendingItemsView(specialVendingModel.getSlots(), specialVendingModel.getBurger());
         }
