@@ -235,6 +235,7 @@ public class MaintenanceController {
         {
             change += vendingModel.getSlots().get(i).getSale();
             vendingModel.getSlots().get(i).setSale(0);
+            vendingModel.getSlots().get(i).setSold(0);
         }
         getChange.getAmountLabel().setText(String.valueOf(change));
     }
@@ -283,6 +284,7 @@ public class MaintenanceController {
     }
     public void addRestockButton()
     {
+        final int[] ret = {0};
         restockView.addRestockButtonListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -290,48 +292,52 @@ public class MaintenanceController {
                 {
                     vendingModel.getSlots().get(0).setAvailability(1+ vendingModel.getSlots().get(0).getAvailability());
                     restockView.getBunlb().setText(String.valueOf(vendingModel.getSlots().get(0).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getTomatoesButton())
                 {
                     vendingModel.getSlots().get(1).setAvailability(1+ vendingModel.getSlots().get(1).getAvailability());
                     restockView.getTomatoeslb().setText(String.valueOf(vendingModel.getSlots().get(1).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getChickenFilletButton())
                 {
                     vendingModel.getSlots().get(2).setAvailability(1+ vendingModel.getSlots().get(2).getAvailability());
                     restockView.getChicklb().setText(String.valueOf(vendingModel.getSlots().get(2).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getMozarellaButton())
                 {
                     vendingModel.getSlots().get(3).setAvailability(1+ vendingModel.getSlots().get(3).getAvailability());
                     restockView.getCheeselb().setText(String.valueOf(vendingModel.getSlots().get(3).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getPattyButton())
                 {
                     vendingModel.getSlots().get(4).setAvailability(1+ vendingModel.getSlots().get(4).getAvailability());
                     restockView.getPattylb().setText(String.valueOf(vendingModel.getSlots().get(4).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getLettuceButton())
                 {
                     vendingModel.getSlots().get(5).setAvailability(1+ vendingModel.getSlots().get(5).getAvailability());
                     restockView.getLettucelb().setText(String.valueOf(vendingModel.getSlots().get(5).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getOnionButton())
                 {
                     vendingModel.getSlots().get(6).setAvailability(1+ vendingModel.getSlots().get(6).getAvailability());
                     restockView.getOnionlb().setText(String.valueOf(vendingModel.getSlots().get(6).getAvailability()));
-                    resetPrintReport();
+                    ret[0] =1;
                 }
                 else if (e.getSource() == restockView.getFishFilletButton())
                 {
                     vendingModel.getSlots().get(7).setAvailability(1+ vendingModel.getSlots().get(7).getAvailability());
                     restockView.getFishlb().setText(String.valueOf(vendingModel.getSlots().get(7).getAvailability()));
+                    ret[0] =1;
+                }
+                if (ret[0] ==1)
+                {
                     resetPrintReport();
                 }
             }
