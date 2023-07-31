@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+
+/**
+ * this is the maintenance class for all the logics applied in the maintenance of the vending machine
+ */
 public class MaintenanceController {
     private VendingModel vendingModel;
     private ChangePriceView changePriceView;
@@ -13,6 +17,9 @@ public class MaintenanceController {
     private RestockView restockView;
     private MaintenanceView maintenanceView;
 
+    /**
+     * This is the constructor for the maintenance controller
+     */
     public MaintenanceController() {
         this.changePriceView = new ChangePriceView();
         this.getChange = new GetChange();
@@ -37,14 +44,25 @@ public class MaintenanceController {
 
     }
 
+    /**
+     * Adds a vending model class
+     * @param vendingModel refers to the vending model class
+     */
     public void addVendingModel(VendingModel vendingModel) {
         this.vendingModel = vendingModel;
     }
 
+    /**
+     * gets the maintenance view class and returns it
+     * @return maintenance view class
+     */
     public MaintenanceView getMaintenanceView() {
         return maintenanceView;
     }
 
+    /**
+     * Makes the print report panel visible and sets the maintenance view invisible
+     */
     public void addPrintReportListener() {
         maintenanceView.addPrintReportButtonListener(new ActionListener() {
             @Override
@@ -55,7 +73,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the get change panel visible and sets the maintenance view invisible
+     */
     public void addGetChangeListener() {
         maintenanceView.addGetChangeListener(new ActionListener() {
             @Override
@@ -66,7 +86,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the change price panel visible and sets the maintenance view invisible
+     */
     public void addChangePriceListener() {
         maintenanceView.addChangePriceListener(new ActionListener() {
             @Override
@@ -76,7 +98,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the restock panel visible and sets the maintenance view invisible
+     */
     public void addRestockListener() {
         maintenanceView.addRestockListener(new ActionListener() {
             @Override
@@ -94,7 +118,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the refill change panel visible and sets the maintenance view invisible
+     */
     public void addRefillListener() {
 
         maintenanceView.addRefillListener(new ActionListener() {
@@ -112,7 +138,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the get change panel invisible and sets the maintenance view visible
+     */
     public void addGetChangeExit() {
         getChange.addGetChangeExit(new ComponentAdapter() {
             @Override
@@ -122,7 +150,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the print report panel invisible and sets the maintenance view visible
+     */
     public void addPrintReportExit() {
         printReport.addComponentListener(new ComponentAdapter() {
             @Override
@@ -132,7 +162,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the change price panel invisible and sets the maintenance view visible
+     */
     public void addChangePriceExit() {
         changePriceView.addChangePriceExit(new ComponentAdapter() {
             @Override
@@ -142,7 +174,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the restock panel invisible and sets the maintenance view visible
+     */
     public void addRestockExit() {
         restockView.addRestockExit(new ComponentAdapter() {
             @Override
@@ -152,7 +186,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Makes the refill panel invisible and sets the maintenance view visible
+     */
     public void addRefillExit() {
         refillView.addRefillExit(new ComponentAdapter() {
             @Override
@@ -162,7 +198,9 @@ public class MaintenanceController {
             }
         });
     }
-
+    /**
+     * Sets the text for the labels in print report
+     */
     public void setReportLabels() {
 
         int j = 0, k = 0,total=0;
@@ -228,6 +266,10 @@ public class MaintenanceController {
             }
         }
     }
+
+    /**
+     * Sets the text for all the labels in the Get change view class
+     */
     public void setGetChangeLabel()
     {
         double change=0;
@@ -239,6 +281,10 @@ public class MaintenanceController {
         }
         getChange.getAmountLabel().setText(String.valueOf(change));
     }
+
+    /**
+     * Makes the buttons increment the selected change and refreshes the labels
+     */
     public void addRefillButtons()
     {
         refillView.addRefillButtonListener(new ActionListener() {
@@ -282,6 +328,10 @@ public class MaintenanceController {
             }
         });
     }
+
+    /**
+     * Makes the buttons increment the selected item and refreshes the labels
+     */
     public void addRestockButton()
     {
         final int[] ret = {0};
@@ -343,6 +393,10 @@ public class MaintenanceController {
             }
         });
     }
+
+    /**
+     * resets the sales and sold items to 0
+     */
     public void resetPrintReport()
     {
         for(int i=0; i< vendingModel.getSlots().size();i++)
@@ -351,6 +405,9 @@ public class MaintenanceController {
             vendingModel.getSlots().get(i).setSale(0);
         }
     }
+    /**
+     * Makes the buttons active so when you click a button it disables all other item buttons and allows you to change the price when you input a non-integer
+     */
     public void addChangePriceButton()
     {
         final int[] changeprice = new int[1];
@@ -441,6 +498,9 @@ public class MaintenanceController {
             }
         });
     }
+    /**
+     * Checks if the string input is an integer
+     */
     public boolean isInteger(String input) {
         try {
             Integer.parseInt(input);
@@ -449,6 +509,9 @@ public class MaintenanceController {
             return false;
         }
     }
+    /**
+     * enables all buttons of the jpanel to true
+     */
     public void setAllButtonTrue(JPanel jPanel)
     {
         for(Component i : jPanel.getComponents())
@@ -459,6 +522,9 @@ public class MaintenanceController {
             }
         }
     }
+    /**
+     * disables all buttons of the jpanel to
+     */
     public void setAllButtonFalse(JPanel jPanel)
     {
         for(Component i : jPanel.getComponents())
