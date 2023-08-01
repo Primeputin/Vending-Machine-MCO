@@ -19,7 +19,7 @@ public class SpecialVending extends AbstractVending{
     private SpecialVendingView specialVendingView;
 
     /**
-     *
+     *This is the constructor for the special vending class
      * @param specialVendingModel refers to the specialVendingModel object
      * @param specialVendingView refers to the specialVendingView object
      */
@@ -101,6 +101,10 @@ public class SpecialVending extends AbstractVending{
         return specialVendingModel.getAvailableChange(index);
     }
 
+    /**
+     * Enables the vending items
+     * @param enabled boolean for setting the vending items
+     */
     public void setVendingItemsEnabled(boolean enabled)
     {
         specialVendingView.setVendingItemsEnabled(enabled);

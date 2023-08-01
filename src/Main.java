@@ -1,7 +1,14 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This is for running the program
+ */
 public class Main {
+	/**
+	 * Runs the main function of the program
+	 * @param args arguments to the program
+	 */
 	public static void main(String[] args) {
 
 		Item bun = new Item("Bun", 120, 20, true, 1);

@@ -500,6 +500,7 @@ public class MaintenanceController {
     }
     /**
      * Checks if the string input is an integer
+     * @param input the string input
      */
     public boolean isInteger(String input) {
         try {
@@ -511,6 +512,7 @@ public class MaintenanceController {
     }
     /**
      * enables all buttons of the jpanel to true
+     * @param jPanel referring to the jpanel and its buttons
      */
     public void setAllButtonTrue(JPanel jPanel)
     {
@@ -523,7 +525,8 @@ public class MaintenanceController {
         }
     }
     /**
-     * disables all buttons of the jpanel to
+     * disables all buttons of the jpanel to false
+     * @param jPanel referring to the jpanel and its buttons
      */
     public void setAllButtonFalse(JPanel jPanel)
     {

@@ -9,16 +9,45 @@ import java.awt.event.ActionListener;
  * @author Vladimir Tang
  */
 public class MainView extends JFrame {
-
+    /**
+     * creates a new panel for main
+     */
     private JPanel main = new JPanel();
+    /**
+     * creates a new panel for choose
+     */
     private JPanel choose = new JPanel();
+    /**
+     * creates a new button for regular choice
+     */
     private JButton regularChoice = new JButton();
+    /**
+     * creates a new button for special choice
+     */
     private JButton specialChoice = new JButton();
+    /**
+     * creates a new button for create vending
+     */
     private JButton createVending = new JButton("Create a Vending Machine");
+    /**
+     * creates a new button for test vending
+     */
     private JButton testVending = new JButton("Test Vending Machine");
+    /**
+     * creates a new button for features slection
+     */
     private JPanel featuresSelection = new JPanel();
+    /**
+     * creates a new button for regular choice
+     */
     private JButton vendingFeatures = new JButton("Vending Features");
+    /**
+     * creates a new button for maintenance features
+     */
     private JButton maintenanceFeatures = new JButton("Maintenance Features");
+    /**
+     * creates a new button for exit to main
+     */
     private JButton exitToMainMain = new JButton("Back");
 
     /**

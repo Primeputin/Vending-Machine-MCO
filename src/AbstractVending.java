@@ -55,8 +55,14 @@ public abstract class AbstractVending{
      */
     abstract int getDENOMINATION(int index);
 
+    /**
+     * Sets the display to true or false
+     * @param show whether to display or not
+     */
     abstract  void setDisplay(boolean show);
-
+/**
+ *
+ */
     abstract void addViewingSlot();
 
     abstract void addMainSourceFrame(MainView mainSourceFrame);
