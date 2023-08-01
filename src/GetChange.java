@@ -5,7 +5,13 @@ import java.awt.event.ComponentAdapter;
  * this class is for displaying the get change panel
  */
 public class GetChange extends JFrame {
+    /**
+     * Label for the amount collected.
+     */
     private JLabel Amount;
+    /**
+     * Panel for the whole get change gui.
+     */
     private JPanel GetChangePanel;
 
     /**

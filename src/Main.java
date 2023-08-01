@@ -5,6 +5,15 @@ import java.util.Scanner;
  * This is for running the program
  */
 public class Main {
+
+	/**
+	 * The default constructor for the driver/main class.
+	 */
+	public Main()
+	{
+
+	}
+
 	/**
 	 * Runs the main function of the program
 	 * @param args arguments to the program

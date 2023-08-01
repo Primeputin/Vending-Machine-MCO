@@ -132,7 +132,7 @@ public class VendingModel {
 	 * This method sets the available changes for the denominations.
 	 * refers to the object that will take the input of the user in the terminal.
 	 *
-	 * @param availableChanges
+	 * @param availableChanges is the array of available changes to be set
 	 */
 	public void setAvailableChanges(int[] availableChanges)
 	{

@@ -89,6 +89,9 @@ public class Slot extends Item{
 		availability -= 1;
 	}
 
+	/**
+	 * This method is used only when a user select something while customizing the burger.
+	 */
 	public void onHold()
 	{
 		availability-=1;

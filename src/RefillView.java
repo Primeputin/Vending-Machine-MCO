@@ -6,23 +6,70 @@ import java.awt.event.ComponentAdapter;
  * This class is for displaying the refill change panel
  */
 public class RefillView extends JFrame{
+    /**
+     * Button for selecting the php1 denomination.
+     */
     private JButton a1Button;
+    /**
+     * Button for selecting the php 5 denomination.
+     */
     private JButton a5Button;
+    /**
+     * Button for selecting the php 10 denomination.
+     */
     private JButton a10Button;
+    /**
+     * Button for selecting the php 100 denomination.
+     */
     private JButton a100Button;
+    /**
+     * Button for selecting the php 500 denomination.
+     */
     private JButton a500Button;
+    /**
+     * Button for selecting the php 50 denomination.
+     */
     private JButton a50Button;
+    /**
+     * Button for selecting the php 20 denomination.
+     */
     private JButton a20Button;
+    /**
+     * Panel for the whole refill gui.
+     */
     private JPanel RefillPanel;
+    /**
+     * Label that contains instruction on how to use refill change
+     */
     private JLabel Instructions;
+    /**
+     * Label for php 1 denomination.
+     */
     private JLabel label1;
+    /**
+     * Label for the php 5 denomination.
+     */
     private JLabel label5;
+    /**
+     * Label for the php 10 denomination.
+     */
     private JLabel label10;
+    /**
+     * Label for the php 20 denomination.
+     */
     private JLabel label20;
+    /**
+     * Label for the php 50 denomination.
+     */
     private JLabel label50;
+    /**
+     * Label for the php 100 denomination.
+     */
     private JLabel label100;
+    /**
+     * Label for the php 500 denomination.
+     */
     private JLabel label500;
-    private int bill;
 
     /**
      * This is the constructor method for refill change

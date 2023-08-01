@@ -5,6 +5,9 @@ import java.awt.event.ComponentAdapter;
  * This class is for displaying the print report panel
  */
 public class PrintReport extends JFrame {
+    /**
+     * Panel for the whole print report panel
+     */
     private JPanel ReportPanel;
 
     /**

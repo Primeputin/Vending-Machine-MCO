@@ -6,22 +6,73 @@ import java.awt.event.ComponentAdapter;
  * This class is for displaying the Restockview
  */
 public class RestockView extends JFrame{
+    /**
+     * Button for the bun.
+     */
     private JButton bunButton;
+    /**
+     * Button for the lettuce.
+     */
     private JButton lettuceButton;
+    /**
+     * Button for the chicken fillet.
+     */
     private JButton chickenFilletButton;
+    /**
+     * Button for the tomatoes.
+     */
     private JButton tomatoesButton;
+    /**
+     * Button for the patty.
+     */
     private JButton pattyButton;
+    /**
+     * Button for the mozarella.
+     */
     private JButton mozarellaButton;
+    /**
+     * Button for the fish fillet.
+     */
     private JButton fishFilletButton;
+    /**
+     * Button for the onion.
+     */
     private JButton onionButton;
+    /**
+     * panel for the whole restocking gui
+     */
     private JPanel ResotckPanel;
+    /**
+     * Label for the bun.
+     */
     private JLabel bunlb;
+    /**
+     * Label for the lettuce.
+     */
     private JLabel lettucelb;
+    /**
+     * Label for the tomatoes.
+     */
     private JLabel tomatoeslb;
+    /**
+     * Label for the chicken fillet.
+     */
     private JLabel chicklb;
+    /**
+     * Label for the mozarella.
+     */
     private JLabel cheeselb;
+    /**
+     * Label for the patty.
+     */
     private JLabel pattylb;
+    /**
+     * Label for the onion.
+     */
     private JLabel onionlb;
+    /**
+     * Label for the fish fillet.
+     */
     private JLabel fishlb;
 
     /**

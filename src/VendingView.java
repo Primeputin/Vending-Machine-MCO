@@ -12,20 +12,66 @@ import java.util.ArrayList;
  */
 public class VendingView extends JFrame {
 
+	/**
+	 * The main view that opened this view or JFrame.
+	 */
 	MainView mainSourceFrame;
+	/**
+	 * A panel that contains the vending items.
+	 */
 	JPanel vendingItems;
+	/**
+	 * a panel that contains the necesasry buttons for inputting cash and completing a selection.
+	 */
     JPanel numpads;
+	/**
+	 * Panel that contains the right side of this gui.
+	 */
 	JPanel rightSide;
+
+	/**
+	 * The label that shows the total cash entered.
+	 */
 	JLabel cashEntered;
+	/**
+	 *  Greetings for the gui.
+	 */
 	JLabel entry;
+	/**
+	 * The button for inputting php 1.
+	 */
 	JButton one;
+	/**
+	 * The button for inputting php 5.
+	 */
 	JButton five;
+	/**
+	 * The button for inputting php 10.
+	 */
 	JButton ten;
+	/**
+	 * The button for inputting php 20.
+	 */
 	JButton twenty;
+	/**
+	 * The button for inputting php 50.
+	 */
 	JButton fifty;
+	/**
+	 * The button for inputting php 100.
+	 */
 	JButton onehundred;
+	/**
+	 * The button for inputting php 500.
+	 */
 	JButton fivehundred;
+	/**
+	 * The button for completing the selection.
+	 */
 	JButton done;
+	/**
+	 * The button for cancellation a selection.
+	 */
 	JButton exit;
 
 	/**

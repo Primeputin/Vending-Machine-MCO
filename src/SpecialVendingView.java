@@ -10,11 +10,29 @@ import java.util.ArrayList;
  */
 public class SpecialVendingView extends VendingView{
 
+    /**
+     * Panel containing necessary additional functions for making a burger.
+     */
     JPanel customizedSection;
+    /**
+     * Panel containing labels which contains the details of the burger.
+     */
     JPanel customizedDetails;
+    /**
+     * Button for selecting a burger.
+     */
     JButton burgerButton;
+    /**
+     * Button for done selecting or customizing.
+     */
     JButton doneCustomized;
+    /**
+     * A dialog that contains the process of making the burger.
+     */
     JDialog loading;
+    /**
+     * The label that contains the process of making the burger.
+     */
     JLabel loadingTask;
 
     /**

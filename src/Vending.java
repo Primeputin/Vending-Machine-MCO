@@ -78,7 +78,8 @@ public class Vending extends AbstractVending{
 
 	/**
 	 * This method sets the vending items to be enabled or disenabled.
-	 * @param enabled
+	 *
+	 * @param enabled is whether to make the vending items enabled or not.
 	 */
 	public void setVendingItemsEnabled(boolean enabled)
 	{

@@ -499,8 +499,10 @@ public class MaintenanceController {
         });
     }
     /**
-     * Checks if the string input is an integer
+     * Checks if the string input is an integer.
+     *
      * @param input the string input
+     * @return  true = the string inputted can be converted into a string, false otherwise
      */
     public boolean isInteger(String input) {
         try {

@@ -8,14 +8,30 @@ import java.awt.event.WindowAdapter;
  * This is the class for displaying the maintenance view
  */
 public class MaintenanceView extends JFrame {
+    /**
+     * Button for getting money feature.
+     */
     private JButton btnGetMoney;
+    /**
+     * Button for printing reports feature.
+     */
     private JButton btnPrintReport;
+    /**
+     * Button for refilling money feature.
+     */
     private JButton btnRefillMoney;
+    /**
+     * Button for restocking feature.
+     */
     private JButton btnRestock;
+    /**
+     * Button for changing the price feature.
+     */
     private JButton btnChangePrice;
+    /**
+     * Panel for the whole maintenance gui.
+     */
     private JPanel MaintenacePanel;
-
-    private int action;
 
     /**
      * Is the constructor method for the maintenance view

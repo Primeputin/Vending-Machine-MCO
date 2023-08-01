@@ -7,18 +7,57 @@ import java.awt.event.ComponentAdapter;
  * This class is for displaying the change price class
  */
 public class ChangePriceView extends JFrame {
+    /**
+     * This button is for the bun's price
+     */
     private JButton bunButton;
+    /**
+     * This button is for the lettuce's price
+     */
     private JButton lettuceButton;
+    /**
+     * This button is for the tomatoes' price
+     */
     private JButton tomatoesButton;
+    /**
+     * This button is for the mozarella's price
+     */
     private JButton mozarellaButton;
+    /**
+     * This button is for the patty's price
+     */
     private JButton pattyButton;
+    /**
+     * This button is for the chicken fillet's price
+     */
     private JButton chickenFilletButton;
+    /**
+     * This button is for the fish fillet's price
+     */
     private JButton fishFilletButton;
+    /**
+     * This button is for the onion's price
+     */
     private JButton onionButton;
+    /**
+     * This textfield is for inputting the price of an item.
+     */
     private JTextField PriceTextField;
+    /**
+     * This JPanel is for the panel of the whole gui.
+     */
     private JPanel ChangePricePanel;
+    /**
+     * This is the button for changing the price of the button.
+     */
     private JButton changePriceButton;
+    /**
+     * This is the label for the price of an item.
+     */
     private JLabel PriceLabel;
+    /**
+     * This is the label for changing price.
+     */
     private JLabel priceChangeLb;
 
     /**

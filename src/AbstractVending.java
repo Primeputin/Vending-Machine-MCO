@@ -7,6 +7,15 @@ import java.util.Scanner;
  * @author Vladimir Tang
  */
 public abstract class AbstractVending{
+
+    /**
+     * The default constructor for AbstractVending
+     */
+    public AbstractVending()
+    {
+
+    }
+
     /**
      * This method adds a new item that is placed in a new slot in the vending machine.
      *
